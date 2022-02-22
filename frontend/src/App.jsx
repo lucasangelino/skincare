@@ -1,13 +1,12 @@
-import * as React from 'react'
+import * as React from "react";
+import AppRouter from "./router/AppRouter";
 
-import Login from './pages/login'
 function App() {
-
   return (
-    <div className="App">
-      <Login />
+    <div>
+      <AppRouter />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
