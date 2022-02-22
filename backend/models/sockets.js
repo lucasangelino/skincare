@@ -1,31 +1,21 @@
-
-
 class Sockets {
+  constructor(io) {
+    this.io = io;
 
-    constructor( io ) {
+    this.socketEvents();
+  }
 
-        this.io = io;
-
-        this.socketEvents();
-    }
-
-    socketEvents() {
-        // On connection
-        this.io.on('connection', ( socket ) => {
-
-            // Escuchar evento: mensaje-to-server
-            socket.on('mensaje-to-server', ( data ) => {
-                console.log( data );
-                
-                this.io.emit('mensaje-from-server', data );
-            });
-            
-        
-        });
-    }
-
-
+  socketEvents() {
+    // On connection
+    this.io.on("connection", (socket) => {
+      // TODO: validate jwt
+      // TODO: Know the user
+      // TODO: emit connected users
+      // TODO: Socket JOIN
+      // TODO: listen to new message
+      // TODO: Disconnect
+    });
+  }
 }
-
 
 module.exports = Sockets;
