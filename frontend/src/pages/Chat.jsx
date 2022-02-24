@@ -6,6 +6,7 @@ import { Avatar, AvatarBadge } from "@chakra-ui/react";
 
 import ChatItem from "../components/framework/ChatItem";
 import ChatViewer from "../components/framework/ChatViewer";
+import NoSelectedChat from "../components/framework/NoSelectedChat";
 
 export default function Chat() {
   return (
@@ -26,7 +27,7 @@ export default function Chat() {
           </VStack>
         </GridItem>
         <GridItem colSpan={2}>
-          <ChatViewer />
+          {true ? <ChatViewer /> : <NoSelectedChat />}
         </GridItem>
       </Grid>
     </Container>
