@@ -26,7 +26,9 @@ export function AuthProvider({ children }) {
 
   const verifyToken = React.useCallback(async () => {}, []);
 
-  const logout = () => {};
+  const logout = () => {
+    console.log("logout");
+  };
 
   return (
     <AuthContext.Provider
