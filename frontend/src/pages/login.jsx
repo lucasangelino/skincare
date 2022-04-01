@@ -12,12 +12,17 @@ import {
   Heading,
   Text,
   useColorModeValue,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
 } from "@chakra-ui/react";
 import { AuthContext } from "../auth/AuthContext";
 
 export default function Login() {
   const { login } = React.useContext(AuthContext);
 
+  const [hasErrors, setHasErrors] = React.useState(false);
   const [form, setForm] = React.useState({
     email: "",
     password: "",
@@ -27,29 +32,32 @@ export default function Login() {
   const handleInputChange = ({ target }) => {
     const { name, value } = target;
     setForm({ ...form, [name]: value });
+    setHasErrors(false);
   };
 
   const handleCheckboxChange = ({ target }) => {
     setForm({ ...form, remember: !form.remember });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (form.remember) {
       localStorage.setItem("email", form.email);
     } else {
       localStorage.removeItem("email");
     }
-    login(form.email, form.password);
+    const loggedIn = await login(form.email, form.password);
+    if (!loggedIn) {
+      setHasErrors(true);
+    }
   };
 
   React.useEffect(() => {
     const email = localStorage.getItem("email");
     if (email) {
-      setForm({ ...form, email, remember: true });
+      setForm((form) => ({ ...form, email }));
     }
   }, []);
-
 
   return (
     <Flex
@@ -124,6 +132,12 @@ export default function Login() {
             </FormControl>
           </Stack>
         </Box>
+        {hasErrors && (
+          <Alert status="error" variant="solid">
+            <AlertIcon />
+            User or email is incorrect
+          </Alert>
+        )}
       </Stack>
     </Flex>
   );

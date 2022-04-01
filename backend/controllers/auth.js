@@ -38,6 +38,7 @@ const createUser = async (req, res = response) => {
 
 const login = async (req, res = response) => {
   const { email, password } = req.body;
+  console.log(email, password);
 
   try {
     const user = await User.findOne({ email });
@@ -70,12 +71,13 @@ const renew = async (req, res = response) => {
   const { uid } = req;
 
   const token = await generateJWT(uid);
+  console.log("backend token", token);
   const user = await User.findById(uid);
 
   res.json({
     ok: true,
     token,
-    user,
+    user: user,
   });
 };
 

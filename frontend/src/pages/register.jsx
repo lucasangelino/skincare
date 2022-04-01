@@ -1,3 +1,4 @@
+import * as React from "react";
 import {
   Flex,
   Box,
@@ -13,12 +14,38 @@ import {
   Text,
   useColorModeValue,
   Link,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { AuthContext } from "../auth/AuthContext";
 
 export default function Register() {
+  const { register } = React.useContext(AuthContext);
+  const [hasErrors, setHasErrors] = React.useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [form, setForm] = React.useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const handleInputChange = ({ target }) => {
+    const { name, value } = target;
+    setForm({ ...form, [name]: value });
+    setHasErrors(false);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const registered = await register(form.name, form.email, form.password);
+    if (!registered) {
+      setHasErrors(true);
+    }
+  };
 
   return (
     <Flex
@@ -47,24 +74,32 @@ export default function Register() {
               <Box>
                 <FormControl id="firstName" isRequired>
                   <FormLabel>First Name</FormLabel>
-                  <Input type="text" />
+                  <Input type="text" name="name" onChange={handleInputChange} />
                 </FormControl>
               </Box>
               <Box>
                 <FormControl id="lastName">
                   <FormLabel>Last Name</FormLabel>
-                  <Input type="text" />
+                  <Input
+                    type="text"
+                    name="lastname"
+                    onChange={handleInputChange}
+                  />
                 </FormControl>
               </Box>
             </HStack>
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input type="email" name="email" onChange={handleInputChange} />
             </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
-                <Input type={showPassword ? "text" : "password"} />
+                <Input
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  onChange={handleInputChange}
+                />
                 <InputRightElement h={"full"}>
                   <Button
                     variant={"ghost"}
@@ -86,6 +121,7 @@ export default function Register() {
                 _hover={{
                   bg: "blue.500",
                 }}
+                onClick={handleSubmit}
               >
                 Sign up
               </Button>
@@ -97,6 +133,12 @@ export default function Register() {
             </Stack>
           </Stack>
         </Box>
+        {hasErrors && (
+          <Alert status="error" variant="solid">
+            <AlertIcon />
+            Something went wrong. Please try again.
+          </Alert>
+        )}
       </Stack>
     </Flex>
   );
