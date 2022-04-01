@@ -20,6 +20,7 @@ import {
 import { AuthContext } from "../auth/AuthContext";
 
 export default function Login() {
+  console.log("Login");
   const { login } = React.useContext(AuthContext);
 
   const [hasErrors, setHasErrors] = React.useState(false);

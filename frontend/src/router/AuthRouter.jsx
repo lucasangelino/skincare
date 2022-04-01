@@ -5,11 +5,12 @@ import Register from "../pages/Register";
 import RecoverAccount from "../pages/Recover";
 
 export default function AuthRouter() {
+  console.log("AuthRouter");
   return (
     <Routes>
-      <Route path="/auth/login" element={<Login />} />
-      <Route path="/auth/register" element={<Register />} />
-      <Route path="/auth/recover" element={<RecoverAccount />} />
+      <Route path="login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/recover" element={<RecoverAccount />} />
     </Routes>
   );
 }

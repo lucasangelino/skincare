@@ -21,8 +21,8 @@ export default function Chat() {
             divider={<StackDivider borderColor="gray.200" />}
             align="stretch"
           >
-            {[1, 2, 3, 4, 5].map((index) => (
-              <ChatItem index={index} />
+            {[1, 2, 3, 4, 5].map((chat, index) => (
+              <ChatItem index={chat} />
             ))}
           </VStack>
         </GridItem>

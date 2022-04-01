@@ -2,7 +2,7 @@ import * as React from "react";
 import { Stack, HStack, VStack, StackDivider, Box } from "@chakra-ui/react";
 import { Avatar, AvatarBadge } from "@chakra-ui/react";
 
-export default function ChatItem() {
+export default function ChatItem({ index }) {
   const handleClick = () => {
     console.log("clicked");
   };
