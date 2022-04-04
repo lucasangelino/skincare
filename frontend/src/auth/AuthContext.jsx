@@ -16,7 +16,6 @@ export function AuthProvider({ children }) {
 
   const login = async (email, password) => {
     const resp = await Request("login", { email, password }, "POST");
-    console.log(resp);
     if (resp.ok) {
       localStorage.setItem("token", resp.token);
       const { id, email, online, name } = resp.user;
@@ -63,11 +62,10 @@ export function AuthProvider({ children }) {
       return false;
     }
     const resp = await AuthRequest("login/renew");
-    console.log("renew ", resp);
     if (resp.ok) {
       localStorage.setItem("token", resp.token);
       const { id, email, online, name } = resp.user;
-      console.log(id, email, online, name);
+
       setAuth({
         uid: id,
         pending: false,
@@ -92,7 +90,12 @@ export function AuthProvider({ children }) {
   }, []);
 
   const logout = () => {
-    console.log("logout");
+    localStorage.removeItem("token");
+    setAuth({
+      uid: null,
+      pending: false,
+      logged: false,
+    });
   };
 
   return (

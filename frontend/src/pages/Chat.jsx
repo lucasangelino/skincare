@@ -8,7 +8,12 @@ import ChatItem from "../components/framework/ChatItem";
 import ChatViewer from "../components/framework/ChatViewer";
 import NoSelectedChat from "../components/framework/NoSelectedChat";
 
+import { AuthContext } from "../auth/AuthContext";
+import { ChatContext } from "../context/chat/ChatContext";
+
 export default function Chat() {
+  const { auth, logout } = React.useContext(AuthContext);
+  const { chatState } = React.useContext(ChatContext);
   return (
     <Container maxW="container.xl" bg={"#111B21"} h={"100vh"}>
       <Grid
@@ -21,9 +26,17 @@ export default function Chat() {
             divider={<StackDivider borderColor="gray.200" />}
             align="stretch"
           >
-            {[1, 2, 3, 4, 5].map((chat, index) => (
-              <ChatItem index={chat} />
-            ))}
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <h1 style={{ color: "white" }}>{auth.name}</h1>
+              <h1 style={{ color: "white" }} onClick={logout}>
+                Salir
+              </h1>
+            </div>
+            {chatState.users
+              .filter((user) => user.id !== auth.uid)
+              .map((user) => (
+                <ChatItem key={user.id} user={user} />
+              ))}
           </VStack>
         </GridItem>
         <GridItem colSpan={2}>

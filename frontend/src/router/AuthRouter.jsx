@@ -5,7 +5,6 @@ import Register from "../pages/Register";
 import RecoverAccount from "../pages/Recover";
 
 export default function AuthRouter() {
-  console.log("AuthRouter");
   return (
     <Routes>
       <Route path="login" element={<Login />} />
