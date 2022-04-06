@@ -64,13 +64,16 @@ export default function Login() {
       minH={"100vh"}
       align={"center"}
       justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
+      bgGradient="linear(to-l, #000428, #004e92)"
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
-          <Heading fontSize={"4xl"}>Sign in to your account</Heading>
-          <Text fontSize={"lg"} color={"gray.600"}>
-            to enjoy all of our cool <Link color={"blue.400"}>features</Link>
+          <Heading fontSize={"4xl"} color={"#fff"}>
+            Sign in to your account
+          </Heading>
+          <Text fontSize={"lg"} color={"gray.500"}>
+            If you want to see more check our{" "}
+            <Link color={"blue.600"}>page</Link>
           </Text>
         </Stack>
         <Box
@@ -106,15 +109,6 @@ export default function Login() {
                   align={"start"}
                   justify={"space-between"}
                 >
-                  <Checkbox
-                    id="remember"
-                    name="remember"
-                    checked={form.remember}
-                    readOnly
-                    onChange={handleCheckboxChange}
-                  >
-                    Remember me
-                  </Checkbox>
                   <Link color={"blue.400"}>Forgot password?</Link>
                 </Stack>
                 <Button
