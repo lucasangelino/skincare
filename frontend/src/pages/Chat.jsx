@@ -40,7 +40,7 @@ export default function Chat() {
           </VStack>
         </GridItem>
         <GridItem colSpan={2}>
-          {true ? <ChatViewer /> : <NoSelectedChat />}
+          {chatState.activeChat ? <ChatViewer /> : <NoSelectedChat />}
         </GridItem>
       </Grid>
     </Container>

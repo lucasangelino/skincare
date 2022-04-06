@@ -1,37 +1,55 @@
 import * as React from "react";
-import { Textarea } from "@chakra-ui/react";
-import { Stack, HStack, VStack, Box, Text } from "@chakra-ui/react";
+import {
+  Stack,
+  HStack,
+  VStack,
+  Box,
+  Text,
+  Input,
+  Button,
+} from "@chakra-ui/react";
 import { Container } from "@chakra-ui/react";
+import { Message } from "../framework/Message";
+import { SocketContext } from "../../context/SocketContext";
+import { AuthContext } from "../../auth/AuthContext";
+import { ChatContext } from "../../context/chat/ChatContext";
 
 export default function ChatViewer() {
+  const [message, setMessage] = React.useState("");
+  const { socket } = React.useContext(SocketContext);
+  const { auth } = React.useContext(AuthContext);
+  const { chatState } = React.useContext(ChatContext);
+
+  const handleChange = (e) => {
+    setMessage(e.target.value);
+  };
+
+  const handleClick = () => {
+    if (message.length === 0) return;
+    setMessage("");
+    socket.emit("personal-message", {
+      from: auth.uid,
+      to: chatState.activeChat,
+      message,
+    });
+  };
+
   return (
     <VStack justify={"space-between"} h={"100%"}>
       <Container maxW="container.md" resize={false}>
-        <Box my={2} align="right">
-          <Box bg={"blue.500"} maxW={"96"} rounded={"lg"} p={2}>
-            <Text align={"start"}>Hola, como estas?</Text>
-          </Box>
-        </Box>
-        <Box my={2}>
-          <Box bg={"blue.500"} maxW={"96"} rounded={"lg"} p={2}>
-            <Text align={"start"}>Todo bien y vos?</Text>
-          </Box>
-        </Box>
-        <Box my={2}>
-          <Box bg={"blue.500"} maxW={"96"} rounded={"lg"} p={2}>
-            <Text align={"start"}>
-              Bien, te queria hacer una consulta. En caso de que zarasa..
-              entonces zarasa?
-            </Text>
-          </Box>
-        </Box>
-        <Box my={2} align="right">
-          <Box bg={"blue.500"} maxW={"96"} rounded={"lg"} p={2}>
-            <Text align={"start"}>Si, zarasa</Text>
-          </Box>
-        </Box>
+        {chatState.messages.map((message) => {
+          return <Message message={message} key={message._id} />;
+        })}
       </Container>
-      <Textarea placeholder="Here is a sample placeholder" />
+      <Button onClick={handleClick}>Enviar</Button>
+      <Input
+        value={message}
+        name="message"
+        color="#fff"
+        placeholder="large size"
+        size="lg"
+        onChange={handleChange}
+      />
     </VStack>
   );
 }

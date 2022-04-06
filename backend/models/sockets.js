@@ -3,6 +3,7 @@ const {
   userConnected,
   userDisconnected,
   getUsers,
+  saveMessage,
 } = require("../controllers/socket");
 
 class Sockets {
@@ -21,13 +22,19 @@ class Sockets {
         socket.disconnect(true);
         return socket.disconnect();
       }
-      console.log("user connected with id: ", uid);
       await userConnected(uid);
+      socket.join(uid);
       this.io.emit("user-list", await getUsers());
 
       socket.on("disconnect", async () => {
         await userDisconnected(uid);
         this.io.emit("user-list", await getUsers());
+      });
+
+      socket.on("personal-message", async (payload) => {
+        const message = await saveMessage(payload);
+        this.io.to(payload.to).emit("new-message", message);
+        this.io.to(payload.from).emit("new-message", message);
       });
     });
   }

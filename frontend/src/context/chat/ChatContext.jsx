@@ -6,7 +6,7 @@ ChatContext.displayName = "ChatContext";
 
 const initialState = {
   uid: "",
-  aciveChat: null,
+  activeChat: null,
   users: [],
   messages: [],
 };
