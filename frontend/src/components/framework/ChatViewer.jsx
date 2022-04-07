@@ -8,6 +8,8 @@ import {
   Input,
   Button,
   Avatar,
+  InputGroup,
+  InputRightElement,
 } from "@chakra-ui/react";
 import { Container } from "@chakra-ui/react";
 import { Message } from "../framework/Message";
@@ -51,21 +53,37 @@ export default function ChatViewer() {
           </Box>
         </HStack>
       </Box>
-      <VStack justify={"space-between"} h={"100%"}>
+      <VStack justify={"space-between"} height={"88vh"}>
         <Container maxW="container.md" resize={false}>
           {chatState.messages.map((message) => {
             return <Message message={message} key={message._id} />;
           })}
         </Container>
-        <Button onClick={handleClick}>Enviar</Button>
-        <Input
-          value={message}
-          name="message"
-          color="#fff"
-          placeholder="large size"
-          size="lg"
-          onChange={handleChange}
-        />
+        <InputGroup size="md">
+          <Input
+            value={message}
+            name="message"
+            pr="4.5rem"
+            type={"text"}
+            placeholder="Write something..."
+            onChange={handleChange}
+            border={0}
+            bg={"#272D38"}
+            borderRadius={0}
+            color={"gray.300"}
+          />
+          <InputRightElement width="4.5rem">
+            <Button
+              h="1.75rem"
+              size="sm"
+              bg={"#4B00E0"}
+              color={"gray.300"}
+              onClick={handleClick}
+            >
+              Send
+            </Button>
+          </InputRightElement>
+        </InputGroup>
       </VStack>
     </>
   );
