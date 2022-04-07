@@ -7,6 +7,7 @@ import {
   Text,
   Input,
   Button,
+  Avatar,
 } from "@chakra-ui/react";
 import { Container } from "@chakra-ui/react";
 import { Message } from "../framework/Message";
@@ -35,21 +36,37 @@ export default function ChatViewer() {
   };
 
   return (
-    <VStack justify={"space-between"} h={"100%"}>
-      <Container maxW="container.md" resize={false}>
-        {chatState.messages.map((message) => {
-          return <Message message={message} key={message._id} />;
-        })}
-      </Container>
-      <Button onClick={handleClick}>Enviar</Button>
-      <Input
-        value={message}
-        name="message"
-        color="#fff"
-        placeholder="large size"
-        size="lg"
-        onChange={handleChange}
-      />
-    </VStack>
+    <>
+      <Box bg={"#272D38"}>
+        <HStack justifyContent={"space-between"} p={2}>
+          <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
+            <Avatar
+              size="md"
+              name="Kent Dodds"
+              src="https://bit.ly/kent-c-dodds"
+            />
+            <Text fontSize={"lg"} color={"gray.300"} marginLeft={3}>
+              Lucas
+            </Text>
+          </Box>
+        </HStack>
+      </Box>
+      <VStack justify={"space-between"} h={"100%"}>
+        <Container maxW="container.md" resize={false}>
+          {chatState.messages.map((message) => {
+            return <Message message={message} key={message._id} />;
+          })}
+        </Container>
+        <Button onClick={handleClick}>Enviar</Button>
+        <Input
+          value={message}
+          name="message"
+          color="#fff"
+          placeholder="large size"
+          size="lg"
+          onChange={handleChange}
+        />
+      </VStack>
+    </>
   );
 }
