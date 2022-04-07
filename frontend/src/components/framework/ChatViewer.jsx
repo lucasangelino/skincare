@@ -42,11 +42,7 @@ export default function ChatViewer() {
       <Box bg={"#272D38"}>
         <HStack justifyContent={"space-between"} p={2}>
           <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
-            <Avatar
-              size="md"
-              name="Kent Dodds"
-              src="https://bit.ly/kent-c-dodds"
-            />
+            <Avatar name="Am L" src="https://bit.ly/broken-link" />
             <Text fontSize={"lg"} color={"gray.300"} marginLeft={3}>
               Lucas
             </Text>

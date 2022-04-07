@@ -129,7 +129,7 @@ export default function Register() {
             <Stack pt={6}>
               <Text align={"center"}>
                 Already a user?{" "}
-                <RouterLink to="/login" color={"blue.400"}>
+                <RouterLink to="/auth/login" color={"blue.400"}>
                   Login
                 </RouterLink>
               </Text>

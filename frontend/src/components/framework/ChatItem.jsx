@@ -35,10 +35,15 @@ export default function ChatItem({ user }) {
       >
         <HStack justify={"space-between"} align="center" p={2}>
           <HStack align="center">
-            <Avatar name="Lucas A" src="https://bit.ly/broken-link" />
+            <Avatar name="Lucas A" src="https://bit.ly/broken-link">
+              <AvatarBadge
+                boxSize="18px"
+                bg={user?.online ? "green.500" : "gray.400"}
+                border={0}
+              />
+            </Avatar>
             <VStack align="left">
               <Box>{user.name}</Box>
-              <Box>{user.online ? "Online" : "Offline"}</Box>
             </VStack>
           </HStack>
           <Box h="40px" w="40px">
