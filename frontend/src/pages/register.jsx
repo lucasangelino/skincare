@@ -13,20 +13,20 @@ import {
   Heading,
   Text,
   useColorModeValue,
-  Link,
   Alert,
   AlertIcon,
   AlertTitle,
   AlertDescription,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
+
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { AuthContext } from "../auth/AuthContext";
 
 export default function Register() {
   const { register } = React.useContext(AuthContext);
   const [hasErrors, setHasErrors] = React.useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = React.useState(false);
   const [form, setForm] = React.useState({
     name: "",
     email: "",
@@ -52,11 +52,11 @@ export default function Register() {
       minH={"100vh"}
       align={"center"}
       justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
+      bgGradient="linear(to-l, #000428, #004e92)"
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
-          <Heading fontSize={"4xl"} textAlign={"center"}>
+          <Heading fontSize={"4xl"} textAlign={"center"} color={"gray.300"}>
             Sign up
           </Heading>
           <Text fontSize={"lg"} color={"gray.600"}>
@@ -128,7 +128,10 @@ export default function Register() {
             </Stack>
             <Stack pt={6}>
               <Text align={"center"}>
-                Already a user? <Link color={"blue.400"}>Login</Link>
+                Already a user?{" "}
+                <RouterLink to="/login" color={"blue.400"}>
+                  Login
+                </RouterLink>
               </Text>
             </Stack>
           </Stack>

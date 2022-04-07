@@ -7,7 +7,6 @@ import {
   Input,
   Checkbox,
   Stack,
-  Link,
   Button,
   Heading,
   Text,
@@ -15,8 +14,10 @@ import {
   Alert,
   AlertIcon,
   AlertTitle,
+  Link,
   AlertDescription,
 } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 import { AuthContext } from "../auth/AuthContext";
 
 export default function Login() {
@@ -110,6 +111,12 @@ export default function Login() {
                   justify={"space-between"}
                 >
                   <Link color={"blue.400"}>Forgot password?</Link>
+                  <Text align={"center"}>
+                    Don't have account?{" "}
+                    <RouterLink to="/auth/register" color={"blue.400"}>
+                      Register
+                    </RouterLink>
+                  </Text>
                 </Stack>
                 <Button
                   bg={"blue.400"}

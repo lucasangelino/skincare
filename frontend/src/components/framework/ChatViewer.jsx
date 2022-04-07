@@ -54,7 +54,22 @@ export default function ChatViewer() {
         </HStack>
       </Box>
       <VStack justify={"space-between"} height={"88vh"}>
-        <Container maxW="container.md" resize={false}>
+        <Container
+          maxW="container.md"
+          resize={false}
+          overflow={"scroll"}
+          overflowX={false}
+          sx={{
+            "&::-webkit-scrollbar": {
+              width: "4px",
+              borderRadius: "8px",
+              backgroundColor: `rgba(0, 0, 0, 0.05)`,
+            },
+            "&::-webkit-scrollbar-thumb": {
+              backgroundColor: `gray.500`,
+            },
+          }}
+        >
           {chatState.messages.map((message) => {
             return <Message message={message} key={message._id} />;
           })}
