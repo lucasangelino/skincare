@@ -1,5 +1,12 @@
 import * as React from "react";
-import { Stack, HStack, VStack, StackDivider, Box } from "@chakra-ui/react";
+import {
+  Stack,
+  HStack,
+  VStack,
+  StackDivider,
+  Box,
+  ListItem,
+} from "@chakra-ui/react";
 import { Avatar, AvatarBadge } from "@chakra-ui/react";
 import { ChatContext } from "../../context/chat/ChatContext";
 import { types } from "../../types/types";
@@ -15,28 +22,30 @@ export default function ChatItem({ user }) {
   };
 
   return (
-    <Box
-      h="72px"
-      bg={chatState.activeChat === user.id ? "blue.500" : "gray.500"}
-      _hover={{
-        bg: "gray.800",
-        cursor: "pointer",
-      }}
-      color="white"
-      onClick={handleClick}
-    >
-      <HStack justify={"space-between"} align="center" p={2}>
-        <HStack align="center">
-          <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" />
-          <VStack align="left">
-            <Box>{user.name}</Box>
-            <Box>{user.online ? "Online" : "Offline"}</Box>
-          </VStack>
+    <ListItem>
+      <Box
+        h="72px"
+        bg={chatState.activeChat === user.id ? "#4B00E0" : "#202C33"}
+        _hover={{
+          bg: "#4B00E0",
+          cursor: "pointer",
+        }}
+        color="white"
+        onClick={handleClick}
+      >
+        <HStack justify={"space-between"} align="center" p={2}>
+          <HStack align="center">
+            <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" />
+            <VStack align="left">
+              <Box>{user.name}</Box>
+              <Box>{user.online ? "Online" : "Offline"}</Box>
+            </VStack>
+          </HStack>
+          <Box h="40px" w="40px">
+            22:54
+          </Box>
         </HStack>
-        <Box h="40px" w="40px">
-          22:54
-        </Box>
-      </HStack>
-    </Box>
+      </Box>
+    </ListItem>
   );
 }
