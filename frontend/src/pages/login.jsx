@@ -18,7 +18,7 @@ import {
   AlertDescription,
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
-import { AuthContext } from "../auth/AuthContext";
+import { AuthContext } from "../context/auth/AuthContext";
 
 export default function Login() {
   const { login } = React.useContext(AuthContext);
@@ -110,7 +110,9 @@ export default function Login() {
                   align={"start"}
                   justify={"space-between"}
                 >
-                  <Link color={"blue.400"}>Forgot password?</Link>
+                  <RouterLink to="/auth/recover" color={"blue.400"}>
+                    Forgot password?
+                  </RouterLink>
                   <Text align={"center"}>
                     Don't have account?{" "}
                     <RouterLink to="/auth/register" color={"blue.400"}>

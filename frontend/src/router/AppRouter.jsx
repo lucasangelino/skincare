@@ -1,24 +1,26 @@
 import * as React from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import { AuthContext } from "../auth/AuthContext";
+import { AuthContext } from "../context/auth/AuthContext";
 
 // Auth Router
 import AuthRouter from "./AuthRouter";
 import { PublicRouter } from "./PublicRoute";
 import { PrivateRouter } from "./PrivateRoute";
-import Chat from "../pages/Chat";
+
+// App
+import { App } from "../components/core/App";
 
 export default function AppRouter() {
   const { auth, verifyToken } = React.useContext(AuthContext);
-
-  // if (auth.pending) {
-  //   return <h1>Waiting</h1>;
-  // }
 
   React.useEffect(() => {
     console.log("verifyToken");
     verifyToken();
   }, [verifyToken]);
+
+  if (auth.pending) {
+    return <div>Loading</div>;
+  }
 
   return (
     <>
@@ -37,7 +39,7 @@ export default function AppRouter() {
               path="/*"
               element={
                 <PrivateRouter>
-                  <Chat />
+                  <App />
                 </PrivateRouter>
               }
             />

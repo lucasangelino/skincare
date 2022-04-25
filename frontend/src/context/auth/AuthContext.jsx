@@ -1,12 +1,12 @@
 import * as React from "react";
-import { ChatContext } from "../context/chat/ChatContext";
-import { AuthRequest, Request } from "../helpers/fetch";
-import { types } from "../types/types";
+import { AppContext } from "../app/AppContext";
+import { AuthRequest, Request } from "../../helpers/fetch";
+import { types } from "../../types/types";
 export const AuthContext = React.createContext();
 
 const initialState = {
   uid: null,
-  pending: false,
+  pending: true,
   logged: false,
   name: null,
   email: null,
@@ -15,7 +15,7 @@ const initialState = {
 
 export function AuthProvider({ children }) {
   const [auth, setAuth] = React.useState(initialState);
-  const { dispatch } = React.useContext(ChatContext);
+  const { dispatch } = React.useContext(AppContext);
 
   const login = async (email, password) => {
     const resp = await Request("login", { email, password }, "POST");
@@ -77,7 +77,6 @@ export function AuthProvider({ children }) {
         email,
         online,
       });
-      console.log("Autenticado");
       return true;
     } else {
       setAuth({

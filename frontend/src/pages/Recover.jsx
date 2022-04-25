@@ -8,6 +8,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 
 export default function RecoverAccount() {
   return (
@@ -15,7 +16,7 @@ export default function RecoverAccount() {
       minH={"100vh"}
       align={"center"}
       justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
+      bgGradient="linear(to-l, #000428, #004e92)"
     >
       <Stack
         spacing={4}
@@ -51,9 +52,12 @@ export default function RecoverAccount() {
               bg: "blue.500",
             }}
           >
-            Request Reset
+            Reset Password
           </Button>
         </Stack>
+        <RouterLink to="/auth/register" color={"blue.400"}>
+          back to login
+        </RouterLink>
       </Stack>
     </Flex>
   );

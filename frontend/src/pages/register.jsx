@@ -21,7 +21,7 @@ import {
 import { Link as RouterLink } from "react-router-dom";
 
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { AuthContext } from "../auth/AuthContext";
+import { AuthContext } from "../context/auth/AuthContext";
 
 export default function Register() {
   const { register } = React.useContext(AuthContext);
