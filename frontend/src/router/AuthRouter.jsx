@@ -7,7 +7,7 @@ import RecoverAccount from "../pages/Recover";
 export default function AuthRouter() {
   return (
     <Routes>
-      <Route path="login" element={<Login />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/recover" element={<RecoverAccount />} />
     </Routes>

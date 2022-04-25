@@ -9,17 +9,17 @@ import { PrivateRouter } from "./PrivateRoute";
 
 // App
 import { App } from "../components/core/App";
+import { LoadingApp } from "../components/framework/LoadingApp";
 
 export default function AppRouter() {
   const { auth, verifyToken } = React.useContext(AuthContext);
 
   React.useEffect(() => {
-    console.log("verifyToken");
     verifyToken();
   }, [verifyToken]);
 
   if (auth.pending) {
-    return <div>Loading</div>;
+    return <LoadingApp />;
   }
 
   return (

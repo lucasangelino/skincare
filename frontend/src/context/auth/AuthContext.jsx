@@ -52,6 +52,14 @@ export function AuthProvider({ children }) {
   };
 
   const verifyToken = React.useCallback(async () => {
+    setAuth({
+      uid: null,
+      pending: true,
+      logged: false,
+      name: null,
+      email: null,
+      oneline: false,
+    });
     const token = localStorage.getItem("token");
     if (!token) {
       setAuth({
