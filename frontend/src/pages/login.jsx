@@ -7,6 +7,7 @@ import {
   Input,
   Checkbox,
   Stack,
+  HStack,
   Button,
   Heading,
   Text,
@@ -16,6 +17,7 @@ import {
   AlertTitle,
   Link,
   AlertDescription,
+  Image,
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { AuthContext } from "../context/auth/AuthContext";
@@ -67,6 +69,14 @@ export default function Login() {
       justify={"center"}
       bgGradient="linear(to-l, #000428, #004e92)"
     >
+      {/* <Stack
+        spacing={8}
+        mx={"auto"}
+        maxW={"lg"}
+        py={12}
+        px={6}
+        bgColor={"blackAlpha.800"}
+      ></Stack> */}
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"} color={"#fff"}>
