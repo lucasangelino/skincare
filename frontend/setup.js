@@ -1,5 +1,4 @@
 // require("./scripts/setup");
-console.log("Hello World");
 // const { exec } = require("child_process");
 // const saveFile = require('fs').writeFileSync;
 // let json = require("./package.json")

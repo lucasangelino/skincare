@@ -4,7 +4,6 @@ const http = require("http");
 const cors = require("cors");
 const socketio = require("socket.io");
 const path = require("path");
-const Sockets = require("./sockets");
 const { dbConnection } = require("../db/config");
 
 class Server {
@@ -24,21 +23,11 @@ class Server {
     // Body Parser
     this.app.use(express.json());
     this.app.use("/api/login", require("../router/auth"));
-    this.app.use("/api/messages", require("../router/messages"));
-  }
-
-  // Esta configuración se puede tener aquí o como propieda de clase
-  // depende mucho de lo que necesites
-  configurarSockets() {
-    new Sockets(this.io);
   }
 
   execute() {
     // Inicializar Middlewares
     this.middlewares();
-
-    // Inicializar sockets
-    this.configurarSockets();
 
     // Inicializar Server
     this.server.listen(this.port, () => {

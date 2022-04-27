@@ -16,6 +16,7 @@ console.log(color("info", "▶️  Starting project setup..."));
 var error = spawnSync("npx --version", { shell: true })
   .stderr.toString()
   .trim();
+
 if (error) {
   console.error(
     color(
@@ -28,6 +29,7 @@ if (error) {
 
 var command =
   'npx "https://gist.github.com/lucasangelino/d0b755c1fca68dca366e93eab1a60ec7" -q';
+
 console.log(
   color("subtitle", "      Running the following command: " + command)
 );
