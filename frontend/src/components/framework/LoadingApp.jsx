@@ -26,7 +26,7 @@ export function LoadingApp() {
       justify={"center"}
       bgGradient="linear(to-l, #000428, #004e92)"
     >
-      <div class="spinner"></div>
+      <div className="spinner"></div>
     </Flex>
   );
 }
