@@ -23,6 +23,7 @@ import {
 } from "@chakra-ui/react";
 import { Navbar } from "./Navbar";
 
+import { Sidebar } from "./Sidebar";
 import { AddToProducts } from "../framework/AddToProduct";
 import { SkinRutine } from "../framework/SkinRutine";
 import { Foro } from "../framework/Foro";
@@ -38,7 +39,7 @@ export function App() {
             <Foro />
           </GridItem>
           <GridItem colSpan={1}>
-            <SkinRutine />
+            <Sidebar />
           </GridItem>
         </Grid>
       </Container>
