@@ -1,0 +1,22 @@
+{
+  "name": "skincare",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "setup": "concurrently \"cd ./backend && npm install && npm run dev\" \" cd ./frontend && npm install && npm run dev\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasangelino/skincare.git"
+  },
+  "author": "Lucas Angelino",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucasangelino/skincare/issues"
+  },
+  "homepage": "https://github.com/lucasangelino/skincare#readme",
+  "dependencies": {
+    "concurrently": "^7.1.0"
+  }
+}

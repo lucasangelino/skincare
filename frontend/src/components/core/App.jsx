@@ -51,7 +51,7 @@ export function App() {
                 <Button mt={5}>Buscar</Button>
               </Box>
             </Center>
-            <Box bgColor="blue.500">sdfsdfsdfdsfd</Box>
+            {/* <Box bgColor="blue.500">sdfsdfsdfdsfd</Box> */}
           </GridItem>
           <GridItem colSpan={1}></GridItem>
         </Grid>
