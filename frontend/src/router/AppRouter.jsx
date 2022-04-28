@@ -7,14 +7,19 @@ import AuthRouter from "./AuthRouter";
 import { PublicRouter } from "./PublicRoute";
 import { PrivateRouter } from "./PrivateRoute";
 
+// routes
+import routes from "./routes.js";
+
 // App
 import { App } from "../components/core/App";
+import { Layout } from "../components/core/Layout";
 import { ProductsCompatibility } from "../pages/ProductsCompatibility";
 import { LoadingApp } from "../components/framework/LoadingApp";
 
 export default function AppRouter() {
   const { auth, verifyToken } = React.useContext(AuthContext);
 
+  console.log(routes);
   React.useEffect(() => {
     verifyToken();
   }, [verifyToken]);
@@ -36,22 +41,21 @@ export default function AppRouter() {
                 </PublicRouter>
               }
             />
-            <Route
-              path="/*"
-              element={
-                <PrivateRouter>
-                  <App />
-                </PrivateRouter>
-              }
-            />
-            <Route
-              path="/products"
-              element={
-                <PrivateRouter>
-                  <ProductsCompatibility />
-                </PrivateRouter>
-              }
-            />
+            {routes.map((route, index) => {
+              return (
+                <Route
+                  key={index}
+                  path={route.path}
+                  element={
+                    <PrivateRouter>
+                      <Layout>
+                        <route.component />
+                      </Layout>
+                    </PrivateRouter>
+                  }
+                />
+              );
+            })}
           </Routes>
         </div>
       </BrowserRouter>
