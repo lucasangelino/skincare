@@ -9,6 +9,7 @@ import { PrivateRouter } from "./PrivateRoute";
 
 // App
 import { App } from "../components/core/App";
+import { ProductsCompatibility } from "../pages/ProductsCompatibility";
 import { LoadingApp } from "../components/framework/LoadingApp";
 
 export default function AppRouter() {
@@ -40,6 +41,14 @@ export default function AppRouter() {
               element={
                 <PrivateRouter>
                   <App />
+                </PrivateRouter>
+              }
+            />
+            <Route
+              path="/products"
+              element={
+                <PrivateRouter>
+                  <ProductsCompatibility />
                 </PrivateRouter>
               }
             />
