@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+
+  skincare.pg:
+    image: postgres:latest
+    volumes:
+    - /shared_folder/postgresql:/var/lib/postgresql
+    - ./db/scripts:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=skincare
+      - POSTGRESS_PASSWORD=1234
+      - POSTGRES_DB=skincare
+      - POSTGRES_HOST_AUTH_METHOD=trust
+
+  skincare.app:
+    image: skincare:latest
+    ports:
+      - 8080:8080

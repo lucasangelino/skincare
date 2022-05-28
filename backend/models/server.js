@@ -4,7 +4,7 @@ const http = require("http");
 const cors = require("cors");
 const socketio = require("socket.io");
 const path = require("path");
-const { dbConnection } = require("../db/config");
+const { pg_client, dbConnection } = require("../db/config");
 
 class Server {
   constructor() {

@@ -1,14 +1,17 @@
-const mongoose = require("mongoose");
+const { Client } = require('pg')
+const pg_client = new Client({
+  user: 'skincare',
+  host: 'skincare.pg',
+  database: 'skincare',
+  password: '1234',
+  port: 5432,
+})
 
-const dbConnection = async () => {
-  try {
-    mongoose.connect(process.env.DB_CON_STRING, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-  } catch (error) {
-    throw new Error(`Database connection error: ${error}`);
-  }
+const dbConnection = async () => { 
+  pg_client.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+  })
 };
 
 module.exports = {
