@@ -39,7 +39,7 @@ export function Home() {
               </InputGroup>
             </Box>
           <Box
-              bgColor="gray.200"
+              bgGradient='linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%)'
               borderRadius={10}
               padding={4}
             >
