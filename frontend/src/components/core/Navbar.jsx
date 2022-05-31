@@ -19,7 +19,7 @@ import {
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { AuthContext } from "../../context/auth/AuthContext";
 
-const NavLink = ({ children }) => (
+const NavLink = ({ children, to }) => (
   <Link
     px={2}
     py={1}
@@ -28,7 +28,7 @@ const NavLink = ({ children }) => (
       textDecoration: "none",
       bg: useColorModeValue("gray.200", "gray.700"),
     }}
-    href={"#"}
+    href={to}
   >
     {children}
   </Link>
@@ -40,9 +40,14 @@ export function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Box bg={useColorModeValue("#1A202C", "#1A202C")} px={4}>
+      <Box bg={useColorModeValue("#5357CE", "#1A202C")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>Logo</Box>
+
+          <NavLink to='/products'>Mis Rutinas</NavLink>
+          <NavLink to='/products'>Market</NavLink>
+          <NavLink to='/products'>Profesionales</NavLink>
+          <NavLink to='/products'>Comunidad</NavLink>
 
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>

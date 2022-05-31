@@ -19,14 +19,15 @@ import { LoadingApp } from "../components/framework/LoadingApp";
 export default function AppRouter() {
   const { auth, verifyToken } = React.useContext(AuthContext);
 
-  console.log(routes);
-  React.useEffect(() => {
-    verifyToken();
-  }, [verifyToken]);
+  // TODO: Cuando la base de datos vuelva a estar operativa, se pueden descomentar estas lineas
+  
+  // React.useEffect(() => {
+  //   verifyToken();
+  // }, [verifyToken]);
 
-  if (auth.pending) {
-    return <LoadingApp />;
-  }
+  // if (auth.pending) {
+  //   return <LoadingApp />;
+  // }
 
   return (
     <>
