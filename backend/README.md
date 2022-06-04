@@ -6,7 +6,11 @@ Dado una lista de ingredientes, devuelve un 2d-slice de la forma *[]EffectType[]
 
 Para referencia (ya ordenados desde el backend)
 
+<<<<<<< HEAD
 ### 🟩 `Producto Verde`
+=======
+### <font color="green">Producto Verde </font>
+>>>>>>> new iteration
 ```
 ProductRank {
     name: "Producto A by Brand X",
@@ -15,7 +19,11 @@ ProductRank {
 }
 ```
 
+<<<<<<< HEAD
 ### 🟨 `Producto Amarillo`
+=======
+### <font color="yellow">Producto Amarillo </font>
+>>>>>>> new iteration
 ```
 ProductRank {
     name: "Producto A by Brand X",
@@ -24,7 +32,11 @@ ProductRank {
 }
 ```
 
+<<<<<<< HEAD
 ### 🟥 `Producto Rojo`
+=======
+### <font color="red">Producto Rojo </font>
+>>>>>>> new iteration
 ```
 ProductRank {
     name: "Producto A by Brand X",
@@ -33,7 +45,11 @@ ProductRank {
 }
 ```
 
+<<<<<<< HEAD
 ### ⬛ `Producto Gris`
+=======
+### <font color="gray">Producto Gris </font>
+>>>>>>> new iteration
 ```
 ProductRank {
     name: "Producto A by Brand X",
@@ -50,7 +66,11 @@ El usuario accede al modulo de Armado de Rutina por primerísima vez o deselecci
 ### **Request Body**:
 ```
 {
+<<<<<<< HEAD
     "selected_checkbox": ["humectant", "cleanser"],
+=======
+	"selected_checkbox": ["humectant", "cleanser"],
+>>>>>>> new iteration
     "ingredients": []
 }
 ```
@@ -58,6 +78,7 @@ El usuario accede al modulo de Armado de Rutina por primerísima vez o deselecci
 ### **Response Body**: los productos que son compatibles con sus preferencias/piel primero; seguido de los productos que son neutros, y por último los incompatibles dañinos, ya ordenados desde el backend.
 ```
 {
+<<<<<<< HEAD
     ok: true, 
     result: [
         "humectant": [
@@ -72,6 +93,22 @@ El usuario accede al modulo de Armado de Rutina por primerísima vez o deselecci
             ....,
             []ProductRank
         },
+=======
+	ok: true, 
+	result: [
+		"humectant": [
+			ProductRank Object{},
+			ProductRank Object{},
+			....,
+            []ProductRank
+		],
+		"cleanser": [
+			ProductRank Object{},
+			ProductRank Object{},
+			....,
+            []ProductRank
+		},
+>>>>>>> new iteration
         ....,
         ....,
         ....,
@@ -80,7 +117,11 @@ El usuario accede al modulo de Armado de Rutina por primerísima vez o deselecci
         ....,
         ....,
         []Effect
+<<<<<<< HEAD
     ]
+=======
+	]
+>>>>>>> new iteration
 }
 ```
 <br/><br/>
@@ -90,7 +131,11 @@ El usuario ya se encuentra en el módulo de Armado de Rutina y seleccionó dos c
 ### **Request Body**: checkbox seleccionados
 ```
 {
+<<<<<<< HEAD
     "selected_checkbox": ["humectant", "sunscreen"],
+=======
+	"selected_checkbox": ["humectant", "sunscreen"],
+>>>>>>> new iteration
     "used": ["humectant"],
     "ingredients": ["glycolic_acid"]
 }
@@ -99,6 +144,7 @@ El usuario ya se encuentra en el módulo de Armado de Rutina y seleccionó dos c
 ### **Response Body**: Solo para los checkbox seleccionados se devolverán los productos que son compatibles con sus preferencias/piel primero; seguido de los productos que son neutros, y por último los incompatibles dañinos, ya ordenados desde el backend.
 ```
 {
+<<<<<<< HEAD
     ok: true, 
     result: [
         "humectant": [
@@ -114,6 +160,23 @@ El usuario ya se encuentra en el módulo de Armado de Rutina y seleccionó dos c
             []ProductRank
         ]
     ]
+=======
+	ok: true, 
+	result: [
+		"humectant": [
+			ProductRank Object{},
+			ProductRank Object{},
+			....
+            []ProductRank
+		],
+		"sunscreen": [
+			ProductRank Object{},
+			ProductRank Object{},
+			....
+            []ProductRank
+		}
+	]
+>>>>>>> new iteration
 }
 ```
 
@@ -124,15 +187,23 @@ El usuario desde alguna otra página/modulo clickea un producto y desde el menú
 ### **Request Body**: checkbox seleccionados
 ```
 {
+<<<<<<< HEAD
     "selected_checkbox": ["humectant"],
     "used": ["humectant"],
     "ingredients": ["glycolic_acid", "salicylic_acid", ...]
     }
+=======
+	"selected_checkbox": ["humectant"],
+    "used": ["humectant"],
+    "ingredients": ["glycolic_acid", "salicylic_acid", ...]
+}
+>>>>>>> new iteration
 ```
 
 ### **Response Body**: Se devolverán los productos que son compatibles con sus preferencias/piel primero; seguido de los productos que son neutros, y por último los incompatibles dañinos, ya ordenados desde el backend. El backend recomendar los efectos automáticamente según el tipo de piel del usuario, e.g, para pieles secas no se recomiendan productos de Peeling.
 ```
 {
+<<<<<<< HEAD
     ok: true, 
     result: [
         "humectant": [
@@ -147,12 +218,32 @@ El usuario desde alguna otra página/modulo clickea un producto y desde el menú
             ....
             []ProductRank
         }
+=======
+	ok: true, 
+	result: [
+		"humectant": [
+			ProductRank Object{},
+			ProductRank Object{},
+			....
+            []ProductRank
+		],
+		"sunscreen": [
+			ProductRank Object{},
+			ProductRank Object{},
+			....
+            []ProductRank
+		}
+>>>>>>> new iteration
         ....
         ....
         ....
         ....
         []Effect
+<<<<<<< HEAD
     ]
+=======
+	]
+>>>>>>> new iteration
 }
 ```
 
@@ -162,7 +253,11 @@ El usuario se encuentra en la visualización de compatibilidad entre dos ingredi
 ### **Request Body**: 
 ```
 {
+<<<<<<< HEAD
     "selected_checkbox": ["exfoliant"],
+=======
+	"selected_checkbox": ["exfoliant"],
+>>>>>>> new iteration
     "used": ["exfoliant"],
     "ingredients": ["glycolic_acid", "salicylic_acid", ...]
 }
@@ -171,6 +266,7 @@ El usuario se encuentra en la visualización de compatibilidad entre dos ingredi
 ### **Response Body**: 
 ```
 {
+<<<<<<< HEAD
     ok: true, 
     result: [
         "exfoliant": [
@@ -185,11 +281,31 @@ El usuario se encuentra en la visualización de compatibilidad entre dos ingredi
             ....
             []ProductRank
         ]
+=======
+	ok: true, 
+	result: [
+		"exfoliant": [
+			ProductRank Object{},
+			ProductRank Object{},
+			....
+            []ProductRank
+		],
+		"sunscreen": [
+			ProductRank Object{},
+			ProductRank Object{},
+			....
+            []ProductRank
+		}
+>>>>>>> new iteration
         ....
         ....
         ....
         ....
         []Effect
+<<<<<<< HEAD
     ]
+=======
+	]
+>>>>>>> new iteration
 }
 ```
