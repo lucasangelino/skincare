@@ -11,10 +11,10 @@ CREATE TABLE ingredient (
     ingr_desc       VARCHAR
 );
 
-CREATE TABLE effect (
-    effect_id       INTEGER PRIMARY KEY,
-    effect_name     VARCHAR,
-    effect_desc     VARCHAR
+CREATE TABLE category (
+    cat_id       INTEGER PRIMARY KEY,
+    cat_name     VARCHAR,
+    cat_desc     VARCHAR
 );
 
 CREATE TABLE ingredient_ingredient (
@@ -39,25 +39,24 @@ CREATE TABLE brand (
 );
 
 CREATE TABLE product (
-    product_id	    INTEGER PRIMARY KEY,
+    prod_id	    INTEGER PRIMARY KEY,
     product_name	VARCHAR,
-    product_type	VARCHAR,
-    brand_id        INTEGER REFERENCES brand(brand_id) ON DELETE CASCADE
+    brand_id        INTEGER REFERENCES brand(brand_id) ON DELETE CASCADE,
+    url_img         VARCHAR
 );
 
-CREATE TABLE product_ingredient 
-(
-    product_ingr_id	    INTEGER PRIMARY KEY,
-    product_id	        VARCHAR,
-    ingr_id	            VARCHAR
+CREATE TABLE product_ingredient (
+    prod_id	            INTEGER REFERENCES product(prod_id) ON DELETE CASCADE,
+    ingr_id	            INTEGER REFERENCES ingredient(ingr_id) ON DELETE CASCADE,
+    main                BOOLEAN,
+    PRIMARY KEY (prod_id, ingr_id)
 );
 
-CREATE TABLE ingredient_effect
-(
-    ingr_eff_id	    INTEGER PRIMARY KEY,
-    ingr_id	        INTEGER REFERENCES ingredient(ingr_id) ON DELETE CASCADE,
-    effect_id	    INTEGER REFERENCES effect(effect_id) ON DELETE CASCADE,
-    descr	        VARCHAR
+CREATE TABLE product_category (
+    prod_cat_id	    INTEGER PRIMARY KEY,
+    prod_id	        INTEGER REFERENCES product(prod_id) ON DELETE CASCADE,
+    cat_id	        INTEGER REFERENCES category(cat_id) ON DELETE CASCADE,
+    cat_desc	    VARCHAR
 );
 
 CREATE TABLE skin_ingredient 
@@ -69,7 +68,7 @@ CREATE TABLE skin_ingredient
     rel_desc	            VARCHAR
 );
 
-grant all privileges on table ingredient, effect, product, brand, skin, ingredient_ingredient to skincare;
+grant all privileges on table ingredient, category, product, brand, skin, ingredient_ingredient, product_category, skin_ingredient to skincare;
 
 INSERT INTO brand (BRAND_ID,BRAND_NAME,COUNTRY) VALUES ('1', 'NEUTROGENA', 'US');
 INSERT INTO brand (BRAND_ID,BRAND_NAME,COUNTRY) VALUES ('2', 'LOREAL', 'FR');
@@ -86,29 +85,35 @@ INSERT INTO brand (BRAND_ID,BRAND_NAME,COUNTRY) VALUES ('12', 'NATURA', 'BR');
 INSERT INTO brand (BRAND_ID,BRAND_NAME,COUNTRY) VALUES ('13', 'VICHY', 'US');
 INSERT INTO brand (BRAND_ID,BRAND_NAME,COUNTRY) VALUES ('14', 'THE CHEMIST LOOK', 'US');
 INSERT INTO brand (BRAND_ID,BRAND_NAME,COUNTRY) VALUES ('15', 'TODOMODA Beauty', 'AR');
+INSERT INTO brand (BRAND_ID,BRAND_NAME,COUNTRY) VALUES ('16', 'LIDHERMA', 'AR');
+INSERT INTO brand (BRAND_ID,BRAND_NAME,COUNTRY) VALUES ('17', 'VANSAME', 'AR');
 
-INSERT INTO product (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,BRAND_ID) VALUES ('1', 'Serum Vitamina C', 'Serum', '11');
-INSERT INTO product (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,BRAND_ID) VALUES ('2', 'Serum Ácido Hialurónico', 'Serum', '11');
-INSERT INTO product (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,BRAND_ID) VALUES ('3', 'Protector Solar 50 FPS Ultra Mate', 'Sunscreen', '11');
-INSERT INTO product (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,BRAND_ID) VALUES ('4', 'UV Face Soothing Sensitive Cream Spf50+', 'Sunscreen', '7');
-INSERT INTO product (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,BRAND_ID) VALUES ('5', 'Cápsulas Vitamina C', 'Cápsulas', '11');
-INSERT INTO product (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,BRAND_ID) VALUES ('6', 'Chronos 60+ Dia', 'Crema Día', '12');
-INSERT INTO product (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,BRAND_ID) VALUES ('7', 'Chronos 60+ Noite', 'Crema Noche', '12');
-INSERT INTO product (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,BRAND_ID) VALUES ('8', 'Chronos Exfoliante Antiseñales', 'Exfoliante', '12');
-INSERT INTO product (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,BRAND_ID) VALUES ('9', 'Chronos Creme De Dia Para Rosto Pele Seca A Normal', 'Humectante', '12');
-INSERT INTO product (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,BRAND_ID) VALUES ('10', 'Chronos Firmeza Y Radiancia +45', 'Antiage', '12');
-INSERT INTO product (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,BRAND_ID) VALUES ('11', 'Effaclear limpiador facial', 'Limpiador', '9');
-INSERT INTO product (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,BRAND_ID) VALUES ('12', 'Tratamiento Antiimperfecciones Vichy', 'Anti imperfecciones', '13');
-INSERT INTO product (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,BRAND_ID) VALUES ('13', 'Tónico Neutrogena Acne Proofing', 'Tónico', '1');
-INSERT INTO product (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,BRAND_ID) VALUES ('14', 'RadianceBoost Hydrogel Face Mask', 'Máscara Antiacné', '1');
-INSERT INTO product (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,BRAND_ID) VALUES ('15', 'Reparador Anti-señales', 'Antiage', '1');
-INSERT INTO product (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,BRAND_ID) VALUES ('16', 'Fine Fairness Brightening Serum', 'Serum', '1');
-INSERT INTO product (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,BRAND_ID) VALUES ('17', 'Sun Fresh Derm Care FPS70', 'Sunscreen', '1');
-INSERT INTO product (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,BRAND_ID) VALUES ('18', 'Contorno Ojos Rápida Acción Múltiple', 'Contorno Ojos', '1');
-INSERT INTO product (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,BRAND_ID) VALUES ('19', 'Sérum facial con pha', 'Serum/Exfoliante', '15');
-INSERT INTO product (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,BRAND_ID) VALUES ('20', 'Sérum facial con niacinamida', 'Serum/Exfoliante', '15');
-INSERT INTO product (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,BRAND_ID) VALUES ('21', 'TÓNICO EXFOLIANTE MA', 'Serum', '14');
-INSERT INTO product (PRODUCT_ID,PRODUCT_NAME,PRODUCT_TYPE,BRAND_ID) VALUES ('22', 'BOOSTER VIT-C/FERÚLICO', 'Serum', '14');
+
+
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('1', 'Serum Vitamina C', '11', 'https://staticar.natura.com/cdn/ff/hk1QzRRH0aY4rBXF4UjoMXt0w_6Rn8akBMsDvPx0jzY/1652785250/public/products/586420_1_8.jpg');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('2', 'Serum Ácido Hialurónico', '11', 'https://staticar.natura.com/cdn/ff/hk1QzRRH0aY4rBXF4UjoMXt0w_6Rn8akBMsDvPx0jzY/1652785250/public/products/586420_1_8.jpg');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('3', 'Protector Solar 50 FPS Ultra Mate', '11', 'https://staticar.natura.com/cdn/ff/BE7v8EINJ5gf28FPUu4p-uiyMndhbtfd0DxymYbnTo0/1652788423/public/products/112540_1_2.jpg');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('4', 'UV Face Soothing Sensitive Cream Spf50+', '7', 'https://incidecoder-content.storage.googleapis.com/79b47541-1f67-448e-b6c3-3b4b4d58859b/products/nivea-sun-uv-face-soothing-sensitive-cream-spf50/nivea-sun-uv-face-soothing-sensitive-cream-spf50_front_photo_300x300@2x.webp');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('5', 'Cápsulas Vitamina C', '11', 'https://staticar.natura.com/cdn/ff/Ezye--bkbxIojxee8QfdCf_I7F-iA13E3yGNQ9QgK_0/1652792438/public/products/120659_1_2.jpg');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('6', 'Chronos 60+ Dia', '12', 'https://incidecoder-content.storage.googleapis.com/76234890-7da5-4ee6-abba-1aaa840614a1/products/natura-chrono-60-dia/natura-chrono-60-dia_front_photo_300x300@2x.webp');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('7', 'Chronos 60+ Noite', '12', 'https://incidecoder-content.storage.googleapis.com/96c14112-d790-4f94-a45a-8ba4e05b7253/products/natura-chronos-60-noite/natura-chronos-60-noite_front_photo_300x300@2x.webp');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('8', 'Chronos Exfoliante Antiseñales', '12', 'https://incidecoder-content.storage.googleapis.com/afcd6e30-6b6c-4e94-b7c7-dc8ab9dab046/products/natura-chronos-exfoliante-antisenales/natura-chronos-exfoliante-antisenales_front_photo_300x300@2x.webp');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('9', 'Chronos Creme De Dia Para Rosto Pele Seca A Normal', '12', 'https://incidecoder-content.storage.googleapis.com/6e219ddc-6cfa-401e-aa05-5b73ed9b648f/products/natura-creme-de-dia-para-rosto-pele-seca-a-normal/natura-creme-de-dia-para-rosto-pele-seca-a-normal_front_photo_300x300@2x.webp');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('10', 'Chronos Firmeza Y Radiancia +45', '12', 'https://incidecoder-content.storage.googleapis.com/89fc38ae-c2be-45fa-8ad6-a5fe30597094/products/natura-chronos-firmeza-y-radiancia-45/natura-chronos-firmeza-y-radiancia-45_front_photo_300x300@1x.webp');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('11', 'Effaclear limpiador facial', '9', '');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('12', 'Tratamiento Antiimperfecciones Vichy', '13', '');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('13', 'Tónico Neutrogena Acne Proofing', '1', '');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('14', 'RadianceBoost Hydrogel Face Mask', '1', '');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('15', 'Reparador Anti-señales', '1', '');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('16', 'Fine Fairness Brightening Serum', '1', '');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('17', 'Sun Fresh Derm Care FPS70', '1', '');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('18', 'Contorno Ojos Rápida Acción Múltiple', '1', '');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('19', 'Sérum facial con pha', '15', '');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('20', 'Sérum facial con niacinamida', '15', '');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('21', 'TÓNICO EXFOLIANTE MA', '14', '');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('22', 'BOOSTER VIT-C/FERÚLICO', '14', '');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('23', 'Lidherma Acnex Depure Control Topic', '16', 'https://http2.mlstatic.com/D_NQ_NP_2X_994848-MLA46306085998_062021-F.webp');
+INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('24', 'Vansame Gs Tratamiento De Pieles Acneicas  Gel', '17', 'https://pedidosfarma.vteximg.com.br/arquivos/ids/177751-300-300/Vansame-Gs-Tratamiento-De-Pieles-Acneicas-Gel-30g-.jpg?v=637396009208000000');
 
 INSERT INTO ingredient (INGR_ID,FRIENDLY_NAME,INGR_NAME,INGR_DESC) VALUES ('1', 'Vitamin A', 'Retinol', 'Retinol, also called vitamin A1, is a fat-soluble vitamin in the vitamin A family[1] found in food and used as a dietary supplement.');
 INSERT INTO ingredient (INGR_ID,FRIENDLY_NAME,INGR_NAME,INGR_DESC) VALUES ('201', 'AHA', 'Lactic Acid', 'Lactic acid is milder than glycolic acid and also helps hydrate the skin. Because its molecules are larger than glycolic acid, it doesn’t penetrate the skin as deeply. This makes it a smart option for sensitive skin types who might find glycolic acid irritating.');
@@ -177,75 +182,87 @@ INSERT INTO ingredient_ingredient (ingr1_id,ingr2_id,compatibility_points,rel_de
 INSERT INTO ingredient_ingredient (ingr1_id,ingr2_id,compatibility_points,rel_desc) VALUES ('20', '1', '5', 'One ingredient that can help prevent irritation when using a retinol-containing product is glycerin, a powerful humectant that helps draw water to the skin.');
 INSERT INTO ingredient_ingredient (ingr1_id,ingr2_id,compatibility_points,rel_desc) VALUES ('20', '10', '0', 'Both humectants are compatible and commonly used together.');
 
-
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('1', '1', '5');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('2', '2', '10');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('3', '3', '13');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('4', '3', '15');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('5', '3', '16');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('6', '4', '15');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('7', '4', '16');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('8', '5', '5');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('9', '6', '15');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('10', '7', '201');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('11', '7', '18');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('12', '8', '205');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('13', '9', '18');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('14', '10', '18');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('15', '19', '4');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('16', '20', '7');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('17', '22', '17');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('18', '11', '9');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('19', '11', '20');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('20', '13', '9');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('21', '13', '20');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('22', '12', '9');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('23', '12', '20');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('24', '12', '10');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('25', '14', '7');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('26', '15', '7');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('27', '16', '7');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('28', '16', '1');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('29', '16', '20');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('30', '17', '1');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('31', '17', '15');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('32', '17', '13');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('33', '18', '4');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('34', '18', '20');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('35', '21', '201');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('36', '22', '1');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('37', '22', '18');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('38', '22', '17');
-INSERT INTO product_ingredient (PRODUCT_INGR_ID,PRODUCT_ID,INGR_ID) VALUES ('39', '22', '5');
-
-INSERT INTO effect (EFFECT_ID,EFFECT_NAME,EFFECT_DESC) VALUES ('1', 'Exfoliant', 'Exfoliating is the process of removing dead skin cells from the surface of your skin using a chemical, granular substance, or exfoliation tool. ');
-INSERT INTO effect (EFFECT_ID,EFFECT_NAME,EFFECT_DESC) VALUES ('2', 'Hydrating', 'Hydration is the absorption of moisture from the air and then infusing your cells with water to improve your skins ability to absorb moisture and nutrients. Moisturizing is about trapping and locking in the moisture to build your skins natural protective barrier.');
-INSERT INTO effect (EFFECT_ID,EFFECT_NAME,EFFECT_DESC) VALUES ('3', 'Mosturizer', 'Moisturizing everyday can reduce the chance of developing extreme dryness or oiliness. Both extremes are harmful for skin and cause common skin conditions like acne. Conceals Other Skin Blemishes. Using a daily moisturizer ensures that the skins blemishes are camouflaged.');
-INSERT INTO effect (EFFECT_ID,EFFECT_NAME,EFFECT_DESC) VALUES ('4', 'Cleanser', 'Facial cleansers play an important role in your skincare routine. Face washes are designed to remove impurities, germs, dirt and makeup that can irritate the skin.');
-INSERT INTO effect (EFFECT_ID,EFFECT_NAME,EFFECT_DESC) VALUES ('5', 'Sunscreen', 'Sunscreens are essential for protecting your skin from UV damage');
-INSERT INTO effect (EFFECT_ID,EFFECT_NAME,EFFECT_DESC) VALUES ('6', 'Peeling', 'Peeling remove the outer layer of the skin, which means they tend to go deeper to remove more excess dead skin cells than exfoliators. ');
-INSERT INTO effect (EFFECT_ID,EFFECT_NAME,EFFECT_DESC) VALUES ('7', 'Toner', 'Toner can be used after a cleanser twice a day to remove excess traces of makeup or other residue from the skin.');
-INSERT INTO effect (EFFECT_ID,EFFECT_NAME,EFFECT_DESC) VALUES ('8', 'Acne', 'Treatments work to clear away bacteria and dry up the excess oils that lead to acne.');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('8', '205', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('24', '205', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('23', '205', 'N');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('8', '204', 'N');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('7', '201', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('21', '201', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('1', '20', 'N');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('8', '20', 'N');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('11', '20', 'N');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('12', '20', 'N');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('13', '20', 'N');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('16', '20', 'N');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('18', '20', 'N');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('9', '18', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('10', '18', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('7', '18', 'N');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('22', '18', 'N');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('22', '17', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('3', '16', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('4', '16', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('6', '15', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('17', '15', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('3', '15', 'N');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('4', '15', 'N');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('3', '13', 'N');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('17', '13', 'N');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('2', '10', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('12', '10', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('11', '9', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('13', '9', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('12', '9', 'N');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('23', '9', 'N');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('24', '9', 'N');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('14', '7', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('15', '7', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('20', '7', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('16', '7', 'N');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('23', '6', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('1', '5', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('5', '5', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('22', '5', 'N');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('18', '4', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('19', '4', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('16', '1', 'Y');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('17', '1', 'N');
+INSERT INTO product_ingredient (prod_id,ingr_id,main) VALUES ('22', '1', 'N');
 
 
+INSERT INTO category (cat_id,cat_name,cat_desc) VALUES ('1', 'Exfoliant', 'Exfoliating is the process of removing dead skin cells from the surface of your skin using a chemical, granular substance, or exfoliation tool. ');
+INSERT INTO category (cat_id,cat_name,cat_desc) VALUES ('2', 'Hydrating', 'Hydration is the absorption of moisture from the air and then infusing your cells with water to improve your skins ability to absorb moisture and nutrients. Moisturizing is about trapping and locking in the moisture to build your skins natural protective barrier.');
+INSERT INTO category (cat_id,cat_name,cat_desc) VALUES ('3', 'Mosturizer', 'Moisturizing everyday can reduce the chance of developing extreme dryness or oiliness. Both extremes are harmful for skin and cause common skin conditions like acne. Conceals Other Skin Blemishes. Using a daily moisturizer ensures that the skins blemishes are camouflaged.');
+INSERT INTO category (cat_id,cat_name,cat_desc) VALUES ('4', 'Cleanser', 'Facial cleansers play an important role in your skincare routine. Face washes are designed to remove impurities, germs, dirt and makeup that can irritate the skin.');
+INSERT INTO category (cat_id,cat_name,cat_desc) VALUES ('5', 'Sunscreen', 'Sunscreens are essential for protecting your skin from UV damage');
+INSERT INTO category (cat_id,cat_name,cat_desc) VALUES ('6', 'Peeling', 'Peeling remove the outer layer of the skin, which means they tend to go deeper to remove more excess dead skin cells than exfoliators. ');
+INSERT INTO category (cat_id,cat_name,cat_desc) VALUES ('7', 'Toner', 'Toner can be used after a cleanser twice a day to remove excess traces of makeup or other residue from the skin.');
+INSERT INTO category (cat_id,cat_name,cat_desc) VALUES ('8', 'Acne', 'Treatments work to clear away bacteria and dry up the excess oils that lead to acne.');
 
-INSERT INTO ingredient_effect (ingr_eff_id,ingr_id,effect_id,descr) VALUES ('1', '1', '3', 'Retinol is used to mousture skin');
-INSERT INTO ingredient_effect (ingr_eff_id,ingr_id,effect_id,descr) VALUES ('2', '1', '8', 'Retinol is also used for acne');
-INSERT INTO ingredient_effect (ingr_eff_id,ingr_id,effect_id,descr) VALUES ('3', '201', '1', 'AHAs are acid and exfoliants');
-INSERT INTO ingredient_effect (ingr_eff_id,ingr_id,effect_id,descr) VALUES ('4', '202', '1', 'AHAs are acid and exfoliants');
-INSERT INTO ingredient_effect (ingr_eff_id,ingr_id,effect_id,descr) VALUES ('5', '203', '1', 'AHAs are acid and exfoliants');
-INSERT INTO ingredient_effect (ingr_eff_id,ingr_id,effect_id,descr) VALUES ('6', '204', '1', 'AHAs are acid and exfoliants');
-INSERT INTO ingredient_effect (ingr_eff_id,ingr_id,effect_id,descr) VALUES ('7', '205', '1', 'AHAs are acid and exfoliants');
-INSERT INTO ingredient_effect (ingr_eff_id,ingr_id,effect_id,descr) VALUES ('8', '4', '1', 'PHA are acid and exfoliants');
-INSERT INTO ingredient_effect (ingr_eff_id,ingr_id,effect_id,descr) VALUES ('9', '5', '5', 'Vitamin C reduces sun damage');
-INSERT INTO ingredient_effect (ingr_eff_id,ingr_id,effect_id,descr) VALUES ('10', '5', '3', 'Vitamin C helps to moustisure skin');
-INSERT INTO ingredient_effect (ingr_eff_id,ingr_id,effect_id,descr) VALUES ('11', '5', '8', 'Vitamin C is used for acne');
-INSERT INTO ingredient_effect (ingr_eff_id,ingr_id,effect_id,descr) VALUES ('13', '6', '6', 'Benzoyl peroxide works by eeling away the skin to get rid of dead skin cells, excessive oil, and bacteria that may be trapped underneath');
-INSERT INTO ingredient_effect (ingr_eff_id,ingr_id,effect_id,descr) VALUES ('14', '7', '3', 'Niacinamide is a powerful ingredient for both skin moisturization and skin brightening');
-INSERT INTO ingredient_effect (ingr_eff_id,ingr_id,effect_id,descr) VALUES ('16', '9', '8', 'Salicylic acid helps against acne.');
-INSERT INTO ingredient_effect (ingr_eff_id,ingr_id,effect_id,descr) VALUES ('17', '10', '3', 'Hyaluronic acid supplements can help increase skin moisture and reduce the appearance of fine lines and wrinkles.');
-INSERT INTO ingredient_effect (ingr_eff_id,ingr_id,effect_id,descr) VALUES ('18', '11', '3', 'Retinoids reduce fine lines and wrinkles by increasing the production of collages, helping to mousture the skin.');
-INSERT INTO ingredient_effect (ingr_eff_id,ingr_id,effect_id,descr) VALUES ('19', '20', '3', 'Glycerin is one of the most effective moisturisers as it helps your skin absorb moisture from the air. The clear liquid acts as a humectant (a substance that retains or preserves moisture) that stops the water in your skin from getting evaporated. Regular application of a glycerin moisturiser will always keep your skin feeling soft and hydrated.');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('1', '16', '3', 'Retinol is used to mousture skin');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('2', '17', '8', 'Retinol is also used for acne');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('3', '22', '1', 'AHAs are acid and exfoliants');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('4', '7', '1', 'AHAs are acid and exfoliants');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('5', '7', '3', 'Vitamin E is an excellent moisture agent.');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('6', '7', '5', 'Vitamin E is good protecting against UV. ');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('7', '21', '1', 'AHAs are acid and exfoliants');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('8', '8', '1', 'AHAs are acid and exfoliants');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('9', '18', '1', 'PHA are acid and exfoliants');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('10', '19', '1', 'PHA are acid and exfoliants');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('11', '1', '5', 'Vitamin C reduces sun damage');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('12', '5', '5', 'Vitamin C reduces sun damage');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('13', '22', '5', 'Vitamin C reduces sun damage');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('14', '1', '3', 'Vitamin C helps to moustisure skin');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('15', '5', '3', 'Vitamin C helps to moustisure skin');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('16', '22', '3', 'Vitamin C helps to moustisure skin');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('17', '1', '8', 'Vitamin C is used for acne');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('18', '5', '8', 'Vitamin C is used for acne');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('19', '22', '8', 'Vitamin C is used for acne');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('20', '6', '5', 'Homosalate is a regulated sunscreen agent. ');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('21', '8', '1', 'AHAs are acid and exfoliants');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('22', '8', '3', 'Glycerin is an excelen skin moisturizer');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('23', '9', '3', 'Vitamin E is an excellent moisture agent.');
+INSERT INTO product_category (prod_cat_id,prod_id,cat_id,cat_desc) VALUES ('24', '9', '5', 'Vitamin E is good protecting against UV.');
 
 
 INSERT INTO skin (skin_id,skin_name,skin_desc) VALUES ('1', 'Normal', 'This is skin that has fine pores, healthy blood circulation, and a smooth texture. It can become dryer with aging in a condition that doctors may refer to as age-induced dryness.');
