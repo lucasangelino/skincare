@@ -1,7 +1,21 @@
 version: '3.1'
 
 services:
-
+  skincare.app:
+    image: backend-skincare:latest
+    build:
+      context: ./
+      target: dev
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - 3000:3000
+    command: node --inspect index.js
+    environment:
+      - PORT=3000
+    depends_on:
+      - skincare.pg
   skincare.pg:
     image: postgres:latest
     volumes:
@@ -10,12 +24,8 @@ services:
     ports:
       - "5432:5432"
     environment:
+      - POSTGRES_HOST=skincare.pg
       - POSTGRES_USER=skincare
-      - POSTGRESS_PASSWORD=1234
-      - POSTGRES_DB=skincare
-      - POSTGRES_HOST_AUTH_METHOD=trust
-
-  skincare.app:
-    image: skincare:latest
-    ports:
-      - 8080:8080
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DATABASE=skincare
+      - POSTGRES_PORT=5432

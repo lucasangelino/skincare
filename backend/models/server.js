@@ -4,13 +4,11 @@ const http = require("http");
 const cors = require("cors");
 const socketio = require("socket.io");
 const path = require("path");
-const { pg_client, dbConnection } = require("../db/config");
 
 class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT;
-    dbConnection();
     this.server = http.createServer(this.app);
     this.io = socketio(this.server, {});
   }
@@ -23,6 +21,7 @@ class Server {
     // Body Parser
     this.app.use(express.json());
     this.app.use("/api/login", require("../router/auth"));
+    this.app.use("/ingredient", require("../router/ingredient"));
   }
 
   execute() {
