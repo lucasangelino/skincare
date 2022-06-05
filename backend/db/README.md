@@ -4,21 +4,17 @@ psql -U skincare -d skincare
 
 # Useful pg commands
 
-\du+
+## \du+
 list all users
 
-\l 
+## \l
 list all databases
 
-\c skincare
+## \c skincare
 switch to skincare database
 
-\dt 
+## \dt
 list all tables
 
-CREATE TABLE leads (id INTEGER PRIMARY KEY, name VARCHAR);
-create table
-
-
-SELECT c_defaults  FROM user_info WHERE c_uid = 'testuser';
-select
+# Seleccionar todos los productos que tienen el ingrediente '5'
+SELECT * FROM product p INNER JOIN product_ingredient pi ON pi.PRODUCT_ID = p.PRODUCT_ID WHERE pi.INGR_ID = '5';

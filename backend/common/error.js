@@ -1,5 +1,5 @@
 module.exports = Object.freeze({
-    ERROR: 'Unexpected error',
-    INGR_NOT_FOUND: 'Ingrediente no encontrado',
-    ANOTHER_CONSTANT: 'another value'
+    NOT_FOUND: 'No hay suficientes registros para completar la operación',
+    UNEXPECTED_ERROR: 'Error inesperado!',
+    INGR_NOT_FOUND: 'Ingrediente no encontrado'
 });
