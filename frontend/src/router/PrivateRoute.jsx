@@ -4,6 +4,6 @@ import { AuthContext } from "../context/auth/AuthContext";
 
 export const PrivateRouter = ({ children }) => {
   const { auth } = useContext(AuthContext);
-  // TODO: Cuando la base de datos vuelva a estar operativa, se puede descomentar esta linea 
+  // TODO: Cuando la base de datos vuelva a estar operativa, se quitar el "!" de la siguiente linea
   return !auth.logged ? children : <Navigate to="/auth/login" />;
 };
