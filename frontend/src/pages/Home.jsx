@@ -10,7 +10,7 @@ import PopularProducts from '../components/framework/PopularProducts';
 export function Home() {
   return (
     <>
-      <Grid templateColumns="repeat(3, 1fr)" gap={4} >
+      <Grid templateColumns={{base: "repeat(1, 1fr)", sm: "repeat(2, 1fr)", md: "repeat(3, 1fr)"}} gap={4} >
         <GridItem colSpan={1}>
           <SkinCareBanner />
         </GridItem>
@@ -20,7 +20,7 @@ export function Home() {
         <GridItem colSpan={1}>
           <RutinesBanner />
         </GridItem>
-        <GridItem colSpan={2}>
+        <GridItem colSpan={{base: 1, sm: 2, md: 2}}>
           <ProductsOfMonth />
         </GridItem>
         <GridItem colSpan={1}>

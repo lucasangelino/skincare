@@ -19,6 +19,7 @@ export default function ProductsOfMonth() {
               bgGradient='linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%)'
               borderRadius={10}
               padding={4}
+              maxW={{base: '328px', sm: '100%'}}
             >
               <Box overflow='scroll' overflowY={'auto'} className='popularCarousel'>
                 <VStack>
