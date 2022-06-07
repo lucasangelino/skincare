@@ -18,7 +18,7 @@ Go to the backend directory and install dependencies
   cd backend
   npm i
 ```
-Run Backend 
+Run Backend (NOTA: El la autenticacion de la App no esta implementada al 100%, por lo que no es necesario correr el Backend para usar el Frontend. Podes saltar este paso y continuar con la instalacion de Frontend)
 
 ```bash
   npm run dev
