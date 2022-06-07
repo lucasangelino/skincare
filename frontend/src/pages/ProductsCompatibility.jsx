@@ -1,7 +1,5 @@
 import * as React from "react";
 import {
-  Grid,
-  Alert,
   Container,
   Box,
   HStack,
@@ -11,10 +9,19 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import Form from "../components/framework/Form";
+import CompatibilityLoader from "../components/framework/ProductCompatibilityLoader";
 
 export function ProductsCompatibility() {
+  const [isResult, setIsResult] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
+  
   const handleSubmit = React.useCallback(() => {
-    console.log("submit");
+    setIsLoading(true);
+    const interval = setInterval(() => {
+      setIsResult(true);
+      setIsLoading(false);
+    }, 2000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -25,29 +32,43 @@ export function ProductsCompatibility() {
           <Input placeholder='Ingrediente' size='md' borderLeftRadius={100} />
           <Input placeholder='Ingrediente' size='md' borderRightRadius={100} />
         </HStack>
-        <Button colorScheme='blue' width={'60%'} marginBottom={10}>Revisar</Button>
+        <Button colorScheme='blue' width={'60%'} marginBottom={10} onClick={handleSubmit}>Revisar</Button>
 
-        <Box padding={10} width='80%' marginBottom={5} border='1px' borderRadius={10}>
-          <HStack justify={'space-between'} spacing={10}>
-            <Box display={'flex'} flexDirection='column' alignItems='center' >
-              <Heading size='lg' marginBottom={5}>Cloruro</Heading>
-              <Text>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem sapiente eligendi laudantium. Maxime blanditiis quisquam totam 
-              </Text>
+        {
+          isLoading && (
+            <Box width={'500px'}>
+              <CompatibilityLoader />
             </Box>
+          )
+        }
+        
+        {
+          isResult && (
+            <>
+            <Box padding={10} width='80%' marginBottom={5} border='1px' borderRadius={10}>
+              <HStack justify={'space-between'} spacing={10}>
+                <Box display={'flex'} flexDirection='column' alignItems='center' >
+                  <Heading size='lg' marginBottom={5}>Cloruro</Heading>
+                  <Text>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem sapiente eligendi laudantium. Maxime blanditiis quisquam totam 
+                  </Text>
+                </Box>
 
-            <Box display={'flex'} flexDirection='column' alignItems='center'>
-              <Heading size='lg' marginBottom={5}>Serum</Heading>
-              <Text>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem sapiente eligendi laudantium. Maxime blanditiis quisquam totam 
-              </Text>
+                <Box display={'flex'} flexDirection='column' alignItems='center'>
+                  <Heading size='lg' marginBottom={5}>Serum</Heading>
+                  <Text>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem sapiente eligendi laudantium. Maxime blanditiis quisquam totam 
+                  </Text>
+                </Box>
+              </HStack>
             </Box>
-          </HStack>
-        </Box>
-        <Heading color='green' marginBottom={3}>Ingredientes compatibles 100%</Heading>
-        <Text color='#065c06' padding={2} borderRadius={2}>
-          Estos ingredientes son compatibles quimicamente. Puedes combinarlos en tus rutinas
-        </Text>
+            <Heading color='green' marginBottom={3}>Ingredientes compatibles 100%</Heading>
+            <Text color='#065c06' padding={2} borderRadius={2}>
+              Estos ingredientes son compatibles quimicamente. Puedes combinarlos en tus rutinas
+            </Text>
+        </>
+          )
+        }
       </Container>
     </>
   );
