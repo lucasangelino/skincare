@@ -9,7 +9,7 @@ export default function ProductsSearchBanner() {
                 <Heading size='lg' color='#fff' marginBottom={20}>
                     Sabías que no puedes mezclar algunos productos en tus rutinas?
                 </Heading>
-                <RouterLink to='/products'>
+                <RouterLink to='/productsCompatibility'>
                     <Button>Revisar compatibilidad</Button>
                 </RouterLink>
             </VStack>
