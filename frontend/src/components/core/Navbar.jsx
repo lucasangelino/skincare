@@ -3,7 +3,7 @@ import {
   Box,
   Flex,
   Avatar,
-  Link,
+  Text,
   Button,
   Menu,
   MenuButton,
@@ -15,24 +15,20 @@ import {
   useColorMode,
   Center,
 } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { AuthContext } from "../../context/auth/AuthContext";
 
 const NavLink = ({ children, to }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={"md"}
-    _hover={{
-      textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
-    }}
-    color='#fff'
-    fontWeight={500}
-    href={to}
+  <RouterLink
+    to={to}
   >
-    {children}
-  </Link>
+    <Text
+      fontSize="md"
+      fontWeight="bold"
+      color={'#fff'}
+    >{children}</Text>
+  </RouterLink>
 );
 
 export function Navbar() {
