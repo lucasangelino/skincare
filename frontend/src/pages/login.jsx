@@ -5,19 +5,14 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Checkbox,
   Stack,
-  HStack,
   Button,
   Heading,
   Text,
   useColorModeValue,
   Alert,
   AlertIcon,
-  AlertTitle,
   Link,
-  AlertDescription,
-  Image,
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { AuthContext } from "../context/auth/AuthContext";

@@ -8,7 +8,7 @@ const routes = Object.freeze([
     isProtected: true,
   },
   {
-    path: "/products",
+    path: "/productsCompatibility",
     component: ProductsCompatibility,
     isProtected: true,
   },

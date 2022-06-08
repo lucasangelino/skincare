@@ -3,51 +3,48 @@ import {
   Box,
   Flex,
   Avatar,
-  Link,
+  Text,
   Button,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
   MenuDivider,
-  useDisclosure,
   useColorModeValue,
   Stack,
   useColorMode,
   Center,
 } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { AuthContext } from "../../context/auth/AuthContext";
 
 const NavLink = ({ children, to }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={"md"}
-    _hover={{
-      textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
-    }}
-    href={to}
+  <RouterLink
+    to={to}
   >
-    {children}
-  </Link>
+    <Text
+      fontSize="md"
+      fontWeight="bold"
+      color={'#fff'}
+    >{children}</Text>
+  </RouterLink>
 );
 
 export function Navbar() {
   const { logout } = React.useContext(AuthContext);
   const { colorMode, toggleColorMode } = useColorMode();
-  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Box bg={useColorModeValue("#5357CE", "#1A202C")} px={4}>
+    <Box padding={3}>
+      <Box bg={useColorModeValue("#5357CE", "#5357CE")} px={4} borderRadius={10}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>Logo</Box>
 
-          <NavLink to='/products'>Mis Rutinas</NavLink>
-          <NavLink to='/products'>Market</NavLink>
-          <NavLink to='/products'>Profesionales</NavLink>
-          <NavLink to='/products'>Comunidad</NavLink>
+          <NavLink to='/'>Inicio</NavLink>
+          <NavLink to='/mirutina'>Mis Rutinas</NavLink>
+          <NavLink to='/tienda'>Tienda</NavLink>
+          <NavLink to='/productsCompatibility'>Compatibilidad</NavLink>
 
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
@@ -89,6 +86,7 @@ export function Navbar() {
             </Stack>
           </Flex>
         </Flex>
+      </Box>
       </Box>
     </>
   );
