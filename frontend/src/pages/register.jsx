@@ -59,9 +59,6 @@ export default function Register() {
           <Heading fontSize={"4xl"} textAlign={"center"} color={"gray.300"}>
             Sign up
           </Heading>
-          <Text fontSize={"lg"} color={"gray.600"}>
-            to enjoy all of our cool features ✌️
-          </Text>
         </Stack>
         <Box
           rounded={"lg"}

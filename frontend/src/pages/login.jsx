@@ -80,12 +80,9 @@ export default function Login() {
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"} color={"#fff"}>
-            Sign in to your account
+            Login
           </Heading>
-          <Text fontSize={"lg"} color={"gray.500"}>
-            If you want to see more check our{" "}
-            <Link color={"blue.600"}>page</Link>
-          </Text>
+          <Text fontSize={"lg"} color={"gray.500"}></Text>
         </Stack>
         <Box
           rounded={"lg"}
@@ -121,12 +118,12 @@ export default function Login() {
                   justify={"space-between"}
                 >
                   <RouterLink to="/auth/recover" color={"blue.400"}>
-                    Forgot password?
+                    Olvide mi contraseña?
                   </RouterLink>
                   <Text align={"center"}>
-                    Don't have account?{" "}
+                    Ya tenes cuenta?{" "}
                     <RouterLink to="/auth/register" color={"blue.400"}>
-                      Register
+                      Registrarse
                     </RouterLink>
                   </Text>
                 </Stack>
@@ -139,7 +136,7 @@ export default function Login() {
                   onClick={handleSubmit}
                   disabled={false}
                 >
-                  Sign in
+                  Login
                 </Button>
               </Stack>
             </FormControl>
@@ -148,7 +145,7 @@ export default function Login() {
         {hasErrors && (
           <Alert status="error" variant="solid">
             <AlertIcon />
-            User or email is incorrect
+            Usuario o Contraseña incorrectos
           </Alert>
         )}
       </Stack>
