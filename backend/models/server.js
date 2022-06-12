@@ -22,6 +22,7 @@ class Server {
     this.app.use(express.json());
     this.app.use("/api/login", require("../router/auth"));
     this.app.use("/ingredient", require("../router/ingredient"));
+    this.app.use("/product", require("../router/product"));
   }
 
   execute() {
