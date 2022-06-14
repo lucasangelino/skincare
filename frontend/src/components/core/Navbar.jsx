@@ -69,6 +69,9 @@ export function Navbar() {
               </Box>
             </HStack>
             <Flex alignItems={"center"}>
+              <Button onClick={toggleColorMode} marginRight={5}>
+                {colorMode === "light" ? <MoonIcon /> : <SunIcon />}{" "}
+              </Button>
               <Menu>
                 <MenuButton
                   as={Button}
@@ -85,10 +88,12 @@ export function Navbar() {
                   />
                 </MenuButton>
                 <MenuList>
-                  <MenuItem>Link 1</MenuItem>
-                  <MenuItem>Link 2</MenuItem>
+                  <MenuItem>Mi Rutina</MenuItem>
+                  <MenuItem>Compatibilidad</MenuItem>
                   <MenuDivider />
-                  <MenuItem>Link 3</MenuItem>
+                  <MenuItem>
+                    <Button onClick={logout}>Cerrar Sesión</Button>
+                  </MenuItem>
                 </MenuList>
               </Menu>
             </Flex>
