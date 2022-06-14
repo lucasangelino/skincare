@@ -20,14 +20,14 @@ export default function AppRouter() {
   const { auth, verifyToken } = React.useContext(AuthContext);
 
   // TODO: Cuando la base de datos vuelva a estar operativa, se pueden descomentar estas lineas
-  
-  // React.useEffect(() => {
-  //   verifyToken();
-  // }, [verifyToken]);
 
-  // if (auth.pending) {
-  //   return <LoadingApp />;
-  // }
+  React.useEffect(() => {
+    verifyToken();
+  }, [verifyToken]);
+
+  if (auth.pending) {
+    return <LoadingApp />;
+  }
 
   return (
     <>
