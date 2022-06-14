@@ -27,11 +27,8 @@ export function Home() {
         {/* <GridItem colSpan={1}>
           <RutinesBanner />
         </GridItem> */}
-        <GridItem colSpan={{ base: 1, sm: 2, md: 2 }}>
+        <GridItem colSpan={{ base: 1, sm: 3, md: 3 }}>
           <ProductsOfMonth />
-        </GridItem>
-        <GridItem colSpan={1}>
-          <PopularProducts />
         </GridItem>
       </Grid>
     </>
