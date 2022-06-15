@@ -19,14 +19,11 @@ export function Home() {
         gap={4}
       >
         <GridItem colSpan={1}>
-          <SkinCareBanner />
-        </GridItem>
-        <GridItem colSpan={1}>
           <ProductsSearchBanner />
         </GridItem>
-        {/* <GridItem colSpan={1}>
+        <GridItem colSpan={2}>
           <RutinesBanner />
-        </GridItem> */}
+        </GridItem>
         <GridItem colSpan={{ base: 1, sm: 3, md: 3 }}>
           <ProductsOfMonth />
         </GridItem>

@@ -26,6 +26,12 @@ export function ProductsCompatibility() {
 
   return (
     <>
+      <input
+        accept="image/*"
+        id="icon-button-file"
+        type="file"
+        capture="environment"
+      />
       <Container maxW="6xl" centerContent>
         <Heading marginBottom={10}>Compatibilidad entre Ingredientes</Heading>
         <HStack spacing={0} width="80%" marginBottom={10}>
