@@ -117,6 +117,7 @@ const getIngredientOverview = async (req, res = response, done) => {
 				"1": [   ],
 				"2": [   ]
 			}*/ 
+
 		var result_wrapper = [];
 
 		var categories_to_display = [];
@@ -147,6 +148,7 @@ const getIngredientOverview = async (req, res = response, done) => {
 		}
 		query = query.concat(`FROM product p `);
 		query = query.concat(`INNER JOIN product_category pc ON pc.PROD_ID = p.PROD_ID AND pc.cat_id IN (${categories_to_display}) `);
+
 		query = query.concat(`INNER JOIN product_ingredient pi ON pi.PROD_ID = p.PROD_ID AND pi.MAIN='t' `);
 		if((ingredients != undefined && ingredients.length > 0)) {
 			query = query.concat(`INNER JOIN INGREDIENT_INGREDIENT ii ON ((ii.INGR1_ID IN (${ingredients}) AND ii.INGR2_ID = pi.INGR_ID) OR (ii.INGR2_ID IN (${ingredients}) AND ii.INGR1_ID = pi.INGR_ID)) `);
@@ -187,6 +189,7 @@ const getIngredientOverview = async (req, res = response, done) => {
 		res.status(200).json({
 			ok: true,
 			result: result_wrapper
+
 		});
 	} catch (error) {
 		console.log(error)
