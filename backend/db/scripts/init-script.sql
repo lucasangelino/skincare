@@ -4,6 +4,22 @@ grant all privileges on database skincare to root;
 
 \connect skincare
 
+CREATE TABLE skin (
+    skin_id	     INTEGER PRIMARY KEY,
+    skin_name	 VARCHAR,
+    skin_desc	 VARCHAR
+);
+
+CREATE TABLE account (
+    account_id SERIAL,
+    mail VARCHAR, 
+    password VARCHAR,
+    nombre VARCHAR, 
+    country VARCHAR, 
+    skin_id INTEGER REFERENCES skin(skin_id) ON DELETE CASCADE,
+    fecha_nac DATE
+);
+
 CREATE TABLE ingredient (
     ingr_id         INTEGER PRIMARY KEY, 
     friendly_name   VARCHAR,
@@ -24,12 +40,6 @@ CREATE TABLE ingredient_ingredient (
     rel_desc VARCHAR,
     PRIMARY KEY (ingr1_id, ingr2_id),
     CHECK (ingr1_id > ingr2_id)
-);
-
-CREATE TABLE skin (
-    skin_id	     INTEGER PRIMARY KEY,
-    skin_name	 VARCHAR,
-    skin_desc	 VARCHAR
 );
 
 CREATE TABLE brand (
@@ -70,6 +80,18 @@ CREATE TABLE skin_ingredient
 
 grant all privileges on table ingredient, category, product, brand, skin, ingredient_ingredient, product_category, skin_ingredient to skincare;
 
+INSERT INTO skin (skin_id,skin_name,skin_desc) VALUES ('1', 'Normal', 'This is skin that has fine pores, healthy blood circulation, and a smooth texture. It can become dryer with aging in a condition that doctors may refer to as age-induced dryness.');
+INSERT INTO skin (skin_id,skin_name,skin_desc) VALUES ('2', 'Dry', 'This skin produces less sebum than normal skin. This means that it is unable to lock in moisture and protect itself from external germs. People with dry skin may experience scaling, flakiness in patches, itchiness, and feelings of tightness.');
+INSERT INTO skin (skin_id,skin_name,skin_desc) VALUES ('3', 'Oily', 'This type of skin overproduces sebum, sometimes due to hormonal changes, stress, and medication use. The skin usually has visible pores and a glossy shine, and it may be prone to acne.');
+INSERT INTO skin (skin_id,skin_name,skin_desc) VALUES ('4', 'Combination skin', 'This skin has some areas that are oily and some that are dry. For example, people with combination skin may have an oily forehead, chin, and nose but normal-to-dry cheeks.');
+INSERT INTO skin (skin_id,skin_name,skin_desc) VALUES ('5', 'Sensitive', 'People with sensitive skin are more prone to inflammation or adverse reactions. Sensitive skin can be a symptom of conditions such as rosacea or eczema.');
+INSERT INTO skin (skin_id,skin_name,skin_desc) VALUES ('6', 'Rosacea', 'A condition that causes redness and often small, red, pus-filled bumps on the face. Rosacea most commonly affects middle-aged women with fair skin. It can be mistaken for acne or other skin conditions. Key symptoms are facial redness with swollen red bumps and small visible blood vessels. Treatments such as antibiotics or anti-acne medication can control and reduce symptoms. Left untreated, it tends to worsen over time.');
+INSERT INTO skin (skin_id,skin_name,skin_desc) VALUES ('7', 'Psoriasis', 'A condition in which skin cells build up and form scales and itchy, dry patches. Psoriasis is thought to be an immune system problem. Triggers include infections, stress and cold. The most common symptom is a rash on the skin, but sometimes the rash involves the nails or joints. Treatment aims to remove scales and stop skin cells from growing so quickly. Topical ointments, light therapy and medication can offer relief.');
+
+
+INSERT INTO account (account_id,mail,password,nombre,country,skin_id,fecha_nac) 
+VALUES ('1', 'pepe@gmail.com', '1234', 'Pepe Pistolero', 'AR', '2', TO_DATE('18/06/2000', 'DD/MM/YYYY'));
+
 INSERT INTO brand (brand_id,brand_name,country) VALUES ('1', 'NEUTROGENA', 'US');
 INSERT INTO brand (brand_id,brand_name,country) VALUES ('2', 'LOREAL', 'FR');
 INSERT INTO brand (brand_id,brand_name,country) VALUES ('3', 'GARNIER', 'FR');
@@ -91,12 +113,6 @@ INSERT INTO brand (brand_id,brand_name,country) VALUES ('18', 'DERMA-E', 'AR');
 INSERT INTO brand (brand_id,brand_name,country) VALUES ('19', 'AVENE', 'FR');
 INSERT INTO brand (brand_id,brand_name,country) VALUES ('20', 'EUCERIN', 'GR');
 INSERT INTO brand (brand_id,brand_name,country) VALUES ('21', 'ISDIN', 'ES');
-
-
-
-
-
-
 
 
 INSERT INTO product (prod_id,product_name,brand_id,url_img) VALUES ('1', 'Serum Vitamina C', '11', 'https://staticar.natura.com/cdn/ff/hk1QzRRH0aY4rBXF4UjoMXt0w_6Rn8akBMsDvPx0jzY/1652785250/public/products/586420_1_8.jpg');
@@ -473,29 +489,40 @@ INSERT INTO product_category (prod_id,cat_id,cat_desc) VALUES ('50', '3', 'Vitam
 INSERT INTO product_category (prod_id,cat_id,cat_desc) VALUES ('50', '8', 'Vitamin C is used for acne');
 
 
-
-INSERT INTO skin (skin_id,skin_name,skin_desc) VALUES ('1', 'Normal', 'This is skin that has fine pores, healthy blood circulation, and a smooth texture. It can become dryer with aging in a condition that doctors may refer to as age-induced dryness.');
-INSERT INTO skin (skin_id,skin_name,skin_desc) VALUES ('2', 'Dry', 'This skin produces less sebum than normal skin. This means that it is unable to lock in moisture and protect itself from external germs. People with dry skin may experience scaling, flakiness in patches, itchiness, and feelings of tightness.');
-INSERT INTO skin (skin_id,skin_name,skin_desc) VALUES ('3', 'Oily', 'This type of skin overproduces sebum, sometimes due to hormonal changes, stress, and medication use. The skin usually has visible pores and a glossy shine, and it may be prone to acne.');
-INSERT INTO skin (skin_id,skin_name,skin_desc) VALUES ('4', 'Combination skin', 'This skin has some areas that are oily and some that are dry. For example, people with combination skin may have an oily forehead, chin, and nose but normal-to-dry cheeks.');
-INSERT INTO skin (skin_id,skin_name,skin_desc) VALUES ('5', 'Sensitive', 'People with sensitive skin are more prone to inflammation or adverse reactions. Sensitive skin can be a symptom of conditions such as rosacea or eczema.');
-INSERT INTO skin (skin_id,skin_name,skin_desc) VALUES ('6', 'Rosacea', 'A condition that causes redness and often small, red, pus-filled bumps on the face. Rosacea most commonly affects middle-aged women with fair skin. It can be mistaken for acne or other skin conditions. Key symptoms are facial redness with swollen red bumps and small visible blood vessels. Treatments such as antibiotics or anti-acne medication can control and reduce symptoms. Left untreated, it tends to worsen over time.');
-INSERT INTO skin (skin_id,skin_name,skin_desc) VALUES ('7', 'Psoriasis', 'A condition in which skin cells build up and form scales and itchy, dry patches. Psoriasis is thought to be an immune system problem. Triggers include infections, stress and cold. The most common symptom is a rash on the skin, but sometimes the rash involves the nails or joints. Treatment aims to remove scales and stop skin cells from growing so quickly. Topical ointments, light therapy and medication can offer relief.');
-
 INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('1', '1', '204', '5', 'AHA acid that smooth fine lines, improve skin discoloration and protect against future damage by eliminating free radicals.');
-INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('3', '2', '201', '5', 'Glycolic, lactic, mandelic, and citric acids are considered AHAs, and theyre best on skin where breakouts are not a problem.');
-INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('4', '3', '205', '5', 'Glycolic acid exfoliates the surface of the skin, sweeping away the dead skin cells that become trapped inside pores and cause acne');
-INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('5', '4', '205', '5', 'The mild strength and moisturizing properties of lactic acid make it a fantastic choice for those with dry skin for that much-needed hydration and gentle exfoliation.');
-INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('6', '4', '201', '5', 'Glycolic acid exfoliates the surface of the skin, sweeping away the dead skin cells that become trapped inside pores and cause acne');
-INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('7', '5', '203', '5', 'Those with sensitive skin will want to stick to milder AHAs such as lactic acid and mandelic acid, which smooth and brighten the skin without causing irritation.');
-INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('8', '3', '9', '5', 'By fighting the germs that cause acne and reducing the inflammation that arises with clogged pores, salicylic acid helps clear the skin without adding shine or oil.');
-INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('9', '2', '202', '5', 'Glycolic, lactic, mandelic, and citric acids are considered AHAs, and theyre best on skin where breakouts are not a problem.');
-INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('10', '2', '203', '5', 'Glycolic, lactic, mandelic, and citric acids are considered AHAs, and theyre best on skin where breakouts are not a problem.');
-INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('11', '2', '204', '5', 'Glycolic, lactic, mandelic, and citric acids are considered AHAs, and theyre best on skin where breakouts are not a problem.');
-INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('12', '2', '205', '5', 'Glycolic, lactic, mandelic, and citric acids are considered AHAs, and theyre best on skin where breakouts are not a problem.');
-INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('13', '2', '20', '5', 'Glycerin is an excellent humectant by nature, ideal for dry skins.');
-INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('14', '4', '10', '5', 'Specialists recommends hyaluronic acid for combination skins because it both hydrates and smooths the appearance of fine lines without feeling greasy.');
-INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('15', '3', '20', '-5', 'Glycerin would contribute to make your skin more oily if its oily already.');
-INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('16', '2', '1', '-2', 'Retinol may cause sensitivity, redness, and peeling, and for those with sensitive skin, these side effects can sometimes be unbearable.');
-INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('17', '5', '1', '-2', 'Retinol may cause sensitivity, redness, and peeling, and for those with sensitive skin, these side effects can sometimes be unbearable.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('2', '2', '201', '5', 'Glycolic, lactic, mandelic, and citric acids are considered AHAs, and theyre best on skin where breakouts are not a problem.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('3', '3', '205', '5', 'Glycolic acid exfoliates the surface of the skin, sweeping away the dead skin cells that become trapped inside pores and cause acne');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('4', '4', '205', '5', 'The mild strength and moisturizing properties of lactic acid make it a fantastic choice for those with dry skin for that much-needed hydration and gentle exfoliation.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('5', '4', '201', '5', 'Glycolic acid exfoliates the surface of the skin, sweeping away the dead skin cells that become trapped inside pores and cause acne');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('6', '5', '203', '5', 'Those with sensitive skin will want to stick to milder AHAs such as lactic acid and mandelic acid, which smooth and brighten the skin without causing irritation.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('7', '3', '9', '5', 'By fighting the germs that cause acne and reducing the inflammation that arises with clogged pores, salicylic acid helps clear the skin without adding shine or oil.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('8', '2', '202', '5', 'Glycolic, lactic, mandelic, and citric acids are considered AHAs, and theyre best on skin where breakouts are not a problem.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('9', '2', '203', '5', 'Glycolic, lactic, mandelic, and citric acids are considered AHAs, and theyre best on skin where breakouts are not a problem.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('10', '2', '204', '5', 'Glycolic, lactic, mandelic, and citric acids are considered AHAs, and theyre best on skin where breakouts are not a problem.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('11', '2', '205', '5', 'Glycolic, lactic, mandelic, and citric acids are considered AHAs, and theyre best on skin where breakouts are not a problem.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('12', '2', '20', '5', 'Glycerin is an excellent humectant by nature, ideal for dry skins.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('13', '4', '10', '5', 'Specialists recommends hyaluronic acid for combination skins because it both hydrates and smooths the appearance of fine lines without feeling greasy.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('14', '3', '20', '-2', 'Glycerin would contribute to make your skin more oily if its oily already.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('15', '2', '1', '-2', 'Retinol may cause sensitivity, redness, and peeling, and for those with sensitive skin, these side effects can sometimes be unbearable.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('16', '5', '1', '-2', 'Retinol may cause sensitivity, redness, and peeling, and for those with sensitive skin, these side effects can sometimes be unbearable.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('17', '3', '1', '5', 'It has the ability to accelerate cell renewal, removing dead skin cells to produce new and fresh ones. That means you dont have to worry about clogged pores or dull skin.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('18', '3', '7', '5', 'Niacinamide is another hard-working ingredient that has several benefits, from relieving and calming inflammation to increasing collagen production and decreasing fat.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('19', '3', '10', '5', 'Without sufficient hydration, your skin will produce even more oil just to compensate.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('20', '7', '9', '5', 'Salicylic acid is classified as a keratolytic, or peeling agent. It works by causing the outer layer of skin to shed. It is a common and effective treatment for a wide variety of skin problems. As a psoriasis treatment, it acts as a scale lifter, helping to soften and remove psoriasis scales.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('21', '7', '1', '5', 'is available as a gel or cream, it is good for the skin.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('22', '5', '5', '-2', 'While vitamin C is a great ingredient and it is generally pretty safe and well-tolerated, those with sensitive skin may experience some irritation using products that contain the antioxidant');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('23', '5', '9', '5', 'Since salicylic acid is a beta hydroxy acid, its great for sensitive skin, too');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('24', '6', '203', '5', 'mandelic acid is absorbed more slowly by the skin to provide mild exfoliation. Its also an antimicrobial and anti-inflammatory agent, so it can help reduce redness and support a healthy microbiome in the skin.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('25', '5', '18', '5', 'For sensitive skin, vitamin E oil soothes and provides a protective barrier.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('26', '6', '7', '5', 'A prime cause of redness and rosacea is a weak moisture barrier and increased transepidermal water loss. Both contribute to the skins irritability and susceptibility to inflammation.Niacinamide increases the biosynthesis of ceramides, boosts nourishing fatty acid levels in the skin, and prevents water loss. Its potent anti-inflammatory properties combat rosaceas redness, irritation, and blotchiness.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('27', '5', '20', '5', ' It’s considered very safe and unlikely to irritate the skin.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('28', '6', '201', '-2', 'will irritate your skin');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('29', '6', '205', '-2', 'will irritate your skin');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('30', '4', '1', '-2', 'Retinol may cause sensitivity, redness, and peeling, and for those with sensitive skin, these side effects can sometimes be unbearable.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('31', '4', '202', '5', 'Glycolic, lactic, mandelic, and citric acids are considered AHAs, and theyre best on skin where breakouts are not a problem.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('32', '4', '9', '5', 'By fighting the germs that cause acne and reducing the inflammation that arises with clogged pores, salicylic acid helps clear the skin without adding shine or oil.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('33', '4', '20', '-2', 'Glycerin would contribute to make your skin more oily if its oily already.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('34', '4', '203', '5', 'Glycolic, lactic, mandelic, and citric acids are considered AHAs, and theyre best on skin where breakouts are not a problem.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('35', '4', '7', '5', 'Niacinamide is another hard-working ingredient that has several benefits, from relieving and calming inflammation to increasing collagen production and decreasing fat.');
+INSERT INTO skin_ingredient (skin_ingr_id,skin_id,ingr_id,compatibility_points,rel_desc) VALUES ('36', '4', '204', '5', 'Glycolic, lactic, mandelic, and citric acids are considered AHAs, and theyre best on skin where breakouts are not a problem.');
 
