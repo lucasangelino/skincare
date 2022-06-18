@@ -1,7 +1,7 @@
 const { response } = require("express");
 const { pg_pool } = require("../db/database");
 const errors = require("../common/error");
-const ProductRankBuilder = require("../helpers/builder/productrank");
+const ProductRankBuilder = require("../helpers/builder/productrankbuilder");
 const ProductRank = require("../models/productrank");
 
 const getIngredients = async (req, res = response, done) => {
