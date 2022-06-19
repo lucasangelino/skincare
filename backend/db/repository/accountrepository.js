@@ -103,8 +103,41 @@ const getAccount = async (mail) => {
 	}
 };
 
+/**
+* Updates Account preferences: Skin_Id.
+* @returns account with updated data
+*/
+const updateSkin = async (account_id, skin_id) => {
+	try {
+		
+		var query = `UPDATE account SET skin_id = ${skin_id} WHERE account_id = ${account_id} 
+		 RETURNING account_id, password, mail, nombre, country, skin_id, fecha_nac `;
+		const records = await pg_pool.query(query);
+		if (records.rows.length >= 1) {
+			let record = records.rows[0];
+
+			let acct = new AccountBuilder()
+			.setId(record.account_id)
+			.setMail(record.mail)
+			.setPassword(record.password)
+			.setNombre(record.nombre)
+			.setCountry(record.country)
+			.setSkin(record.skin_id)
+			.setNac(record.fecha_nac)
+			.build();
+
+			return acct;
+		} else {
+			return null;
+		}
+	} catch (error) {
+		return null;
+	}
+};
+
 module.exports = {
 	createAccount,
 	getAccount,
-	getAccountById
+	getAccountById, 
+	updateSkin
 };
