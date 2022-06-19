@@ -7,10 +7,10 @@
 	},
 	"item": [
 		{
-			"name": "Account / Auth",
+			"name": "Account",
 			"item": [
 				{
-					"name": "CreateAccount - /api/login/new",
+					"name": "/account/create",
 					"event": [
 						{
 							"listen": "test",
@@ -33,24 +33,69 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"gaxelac11@gmail.com\",\n    \"password\": \"1234\",\n    \"name\": \"Pepe Pistolero\",\n    \"skin_id\": 2\n}"
+							"raw": "{\n    \"email\": \"gaxelac16@gmail.com\",\n    \"password\": \"1234\",\n    \"name\": \"Pepe Pistolero\",\n    \"skin_id\": 2\n}"
 						},
 						"url": {
-							"raw": "http://localhost:{{port}}/api/login/new",
+							"raw": "http://localhost:{{port}}/account/create",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "{{port}}",
 							"path": [
-								"api",
-								"login",
-								"new"
+								"account",
+								"create"
 							]
 						}
 					},
 					"response": []
 				},
+				{
+					"name": "UpdateSkinType - /account/update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set('access_token', JSON.parse(responseBody).token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"account_id\": 1,\n    \"skin_id\": 2\n}"
+						},
+						"url": {
+							"raw": "http://localhost:{{port}}/account/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"account",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
 				{
 					"name": "Login - /api/login",
 					"event": [

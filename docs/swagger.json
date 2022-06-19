@@ -1,0 +1,519 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "skincare",
+    "contact": {}
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "securityDefinitions": {},
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/account/create": {
+      "post": {
+        "summary": "/account/create",
+        "tags": [
+          "Account"
+        ],
+        "operationId": "/account/create",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/~1account~1createrequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/account/update": {
+      "post": {
+        "summary": "UpdateSkinType - /account/update",
+        "tags": [
+          "Account"
+        ],
+        "operationId": "UpdateSkinType-/account/update",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateSkinType-~1account~1updateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/login": {
+      "post": {
+        "summary": "Login - /api/login",
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "Login-/api/login",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Login-~1api~1loginRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/login/renew": {
+      "get": {
+        "summary": "Renew - /api/login/renew",
+        "tags": [
+          "Auth"
+        ],
+        "operationId": "Renew-/api/login/renew",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "x-token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "JWT"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/ingredient/overview": {
+      "get": {
+        "summary": "/ingredient/overview",
+        "tags": [
+          "Ingredient"
+        ],
+        "operationId": "/ingredient/overview",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/ingredient/get": {
+      "get": {
+        "summary": "/ingredient/get",
+        "tags": [
+          "Ingredient"
+        ],
+        "operationId": "/ingredient/get",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/ingredient/get/1": {
+      "get": {
+        "summary": "/ingredient/:id",
+        "tags": [
+          "Ingredient"
+        ],
+        "operationId": "/ingredient/:id",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/ingredient/compare": {
+      "get": {
+        "summary": "/ingredient/compare",
+        "tags": [
+          "Ingredient"
+        ],
+        "operationId": "/ingredient/compare",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/product/get": {
+      "get": {
+        "summary": "/product/get",
+        "tags": [
+          "Product"
+        ],
+        "operationId": "/product/get",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/product/compare": {
+      "get": {
+        "summary": "/product/compare",
+        "tags": [
+          "Product"
+        ],
+        "operationId": "/product/compare",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/product/get/3": {
+      "get": {
+        "summary": "/product/:id",
+        "tags": [
+          "Product"
+        ],
+        "operationId": "/product/:id",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": false,
+            "enum": [
+              "application/json"
+            ],
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "/account/createrequest": {
+      "title": "/account/createrequest",
+      "example": {
+        "email": "gaxelac16@gmail.com",
+        "password": "1234",
+        "name": "Pepe Pistolero",
+        "skin_id": 2
+      },
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "skin_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "email",
+        "password",
+        "name",
+        "skin_id"
+      ]
+    },
+    "UpdateSkinType-/account/updateRequest": {
+      "title": "UpdateSkinType-/account/updateRequest",
+      "example": {
+        "account_id": 1,
+        "skin_id": 2
+      },
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "skin_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "account_id",
+        "skin_id"
+      ]
+    },
+    "Login-/api/loginRequest": {
+      "title": "Login-/api/loginRequest",
+      "example": {
+        "email": "pepe@gmail.com",
+        "password": "1234"
+      },
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "email",
+        "password"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "Account"
+    },
+    {
+      "name": "Auth"
+    },
+    {
+      "name": "Ingredient"
+    },
+    {
+      "name": "Product"
+    }
+  ]
+}

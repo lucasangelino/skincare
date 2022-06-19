@@ -33,6 +33,10 @@ class Account {
 	getSkin() {
 		return this.skin_id;
 	}
+
+	setSkin(skin_id) {
+		this.skin_id = skin_id;
+	}
 	
 	getNac() {
 		return this.fecha_nac;
