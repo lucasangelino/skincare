@@ -9,6 +9,9 @@ import {
   Text,
   Box,
   Container,
+  Button,
+  HStack,
+  Badge,
 } from "@chakra-ui/react";
 
 export function RutineMaker() {
@@ -42,6 +45,24 @@ export function RutineMaker() {
   return (
     <>
       <Container maxWidth="6xl" centerContent>
+        <Box border={"1px solid #fff"} borderRadius={10} padding={5}>
+          Debajo veras todas las categorias de productos que te podemos ofrecer.
+          Dentro de cada una veras los diferentes productos en una escala de
+          color. Elige todos los productos{" "}
+          <Badge variant="outline" colorScheme="green">
+            verdes
+          </Badge>{" "}
+          para asegurarte la máxima compatibilidad. Los productos que sean{" "}
+          <Badge variant="outline" colorScheme="yellow">
+            amarillos
+          </Badge>{" "}
+          possen una compatibilidad aceptable, es decir que funcionaran pero no
+          podrás sacar el máximo poder. Por ultimo, evita los productos{" "}
+          <Badge variant="outline" colorScheme="red">
+            rojos
+          </Badge>{" "}
+          ya que podrían neutralizar la efectividad de tu rutina.
+        </Box>
         <Heading>Selecciona tus categorias</Heading>
         <Stack spacing={5} direction="row" marginTop={10}>
           <Checkbox
@@ -259,6 +280,9 @@ export function RutineMaker() {
             </VStack>
           </GridItem>
         </Grid>
+        <Button marginTop={10} colorScheme={"blue"}>
+          Crear rutina
+        </Button>
       </Container>
     </>
   );
