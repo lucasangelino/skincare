@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, Box, Heading, Button } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const rutines = [
   {
@@ -19,7 +20,11 @@ export default function RutinesBanner() {
       <Text fontSize={"md"} color="#fff">
         Parece que no tienes rutinas creadas, ¿Quieres crear una?
       </Text>
-      <Button>Crear Rutina</Button>
+      <Link to="/create-rutine">
+        <Button variantColor={"teal"} size={"md"}>
+          Crear Rutina
+        </Button>
+      </Link>
     </Box>
   );
 }

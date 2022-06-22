@@ -63,7 +63,7 @@ export function Navbar() {
             >
               <Box display={"flex"}>
                 <NavLink to="/">Inicio</NavLink>
-                <NavLink to="/mirutina">Mis Rutinas</NavLink>
+                <NavLink to="/mirutina">Rutinas</NavLink>
                 <NavLink to="/tienda">Tienda</NavLink>
                 <NavLink to="/productsCompatibility">Compatibilidad</NavLink>
               </Box>

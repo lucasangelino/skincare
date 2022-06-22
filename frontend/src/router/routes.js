@@ -1,5 +1,6 @@
 import { Home } from "../pages/Home";
 import { ProductsCompatibility } from "../pages/ProductsCompatibility";
+import { RutineMaker } from "../pages/RutineMaker";
 
 const routes = Object.freeze([
   {
@@ -10,6 +11,11 @@ const routes = Object.freeze([
   {
     path: "/productsCompatibility",
     component: ProductsCompatibility,
+    isProtected: true,
+  },
+  {
+    path: "/create-rutine",
+    component: RutineMaker,
     isProtected: true,
   },
 ]);

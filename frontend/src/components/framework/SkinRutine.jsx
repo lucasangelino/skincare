@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Box, Button, Heading, Text, Link, Center } from "@chakra-ui/react";
+import { Box, Button, Heading, Text, Center } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 export function SkinRutine() {
   return (
@@ -11,8 +12,8 @@ export function SkinRutine() {
         <Text fontSize="sm" isTruncated>
           Actualmente no dispones de rutinas
         </Text>
-        <Link to={`/products`} _hover={{ textDecoration: "none" }}>
-          <Button mt={5}>Crear rutina</Button>
+        <Link to={`/create-rutine`} _hover={{ textDecoration: "none" }}>
+          {/* <Button mt={5}>Crear rutina</Button> */}
         </Link>
       </Box>
     </Center>
