@@ -2,12 +2,12 @@ FROM node:18.2.0 as base
 
 WORKDIR /app
 COPY package*.json /
-EXPOSE 3000
+EXPOSE 8080
 
 FROM base as dev
 
 ENV NODE_ENV=development
-ENV PORT=3000
+ENV PORT=8080
 ENV JWT_SECRET=Se4SoT7$ujo=?Lu93_jo$#ioSecREt#
 
 # postgres

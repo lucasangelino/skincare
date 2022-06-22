@@ -10,10 +10,10 @@ services:
     volumes:
       - .:/app
     ports:
-      - 3000:3000
+      - 8080:8080
     command: node --inspect index.js
     environment:
-      - PORT=3000
+      - PORT=8080
     depends_on:
       - skincare.pg
   skincare.pg:

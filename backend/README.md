@@ -316,28 +316,24 @@ El usuario accede al modulo de Armado de Rutina por primerísima vez o deselecci
 <br/><br/>
 
 ## Caso de Uso 2
-El usuario ya se encuentra en el módulo de Armado de Rutina y seleccionó dos checkbox (Humectante y Protector Solar). También ya seleccionó un producto de humectantes. 
-#### **Request Body**: checkbox seleccionados
+El usuario ya se encuentra en el módulo de Armado de Rutina y seleccionó dos checkbox (Humectante y Protector Solar). También ya seleccionó un producto de humectantes.
+
+
+#### **Request Body**: checkbox seleccionados: seleccionó los checkbox de Humectante y Protector Solar, y además clickeó un producto Humectante que tiene ácido glicólico.
 ```
 {
-    "selected_checkbox": ["humectant", "sunscreen"],
-    "used": ["humectant"],
-    "ingredients": ["glycolic_acid"]
+    "selected_checkbox": [1, 2],
+    "used": [1],
+    "ingredients": [205]
 }
 ```
 
-#### **Response Body**: Solo para los checkbox seleccionados se devolverán los productos que son compatibles con sus preferencias/piel primero; seguido de los productos que son neutros, y por último los incompatibles dañinos, ya ordenados desde el backend.
+#### **Response Body**: Se devolverán los resultados ordenados desde el backend para las categorías cuyo checkbox fue seleccionado y no fue usado.
 ```
 {
     ok: true, 
     result: [
-        "humectant": [
-            ProductRank Object{},
-            ProductRank Object{},
-            ....
-            []ProductRank
-        ],
-        "sunscreen": [
+        "2": [
             ProductRank Object{},
             ProductRank Object{},
             ....
