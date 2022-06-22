@@ -1,4 +1,4 @@
-version: '3.1'
+version: "3.1"
 
 services:
   skincare.app:
@@ -19,8 +19,8 @@ services:
   skincare.pg:
     image: postgres:latest
     volumes:
-    - /shared_folder/postgresql:/var/lib/postgresql
-    - ./db/scripts:/docker-entrypoint-initdb.d
+      - /shared_folder/postgresql:/var/lib/postgresql
+      - ./db/scripts:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
     environment:
