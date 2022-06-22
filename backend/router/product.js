@@ -12,6 +12,6 @@ router.get("/get", [], getProducts);
 
 router.get("/get/:id", [], getProductId);
 
-router.get("/compare", [], compareProducts);
+router.post("/compare", [], compareProducts);
 
 module.exports = router;
