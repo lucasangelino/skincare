@@ -12,16 +12,42 @@ import Form from "../components/framework/Form";
 import CompatibilityLoader from "../components/framework/ProductCompatibilityLoader";
 
 export function ProductsCompatibility() {
-  const [isResult, setIsResult] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isResult, setIsResult] = React.useState(false);
+  const [isError, setIsError] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState("");
+  const [result, setResult] = React.useState([]);
+  const [product1, setProduct1] = React.useState("");
+  const [product2, setProduct2] = React.useState("");
 
   const handleSubmit = React.useCallback(() => {
     setIsLoading(true);
     const interval = setInterval(() => {
-      setIsResult(true);
       setIsLoading(false);
-    }, 2000);
-    return () => clearInterval(interval);
+      setIsResult(true);
+    }, 2500);
+  }, []);
+
+  const compare = async (product1, product2) => {
+    const response = await fetch(`http://localhost:8080/product/compare`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        product_ids: [product1, product2],
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+  };
+
+  const handleProduct1Change = React.useCallback((event) => {
+    setProduct1(event.target.value);
+  });
+
+  const handleProduct2Change = React.useCallback((event) => {
+    setProduct2(event.target.value);
   }, []);
 
   return (
@@ -33,10 +59,20 @@ export function ProductsCompatibility() {
         capture="environment"
       />
       <Container maxW="6xl" centerContent>
-        <Heading marginBottom={10}>Compatibilidad entre Ingredientes</Heading>
+        <Heading marginBottom={10}>Compatibilidad entre Productos</Heading>
         <HStack spacing={0} width="80%" marginBottom={10}>
-          <Input placeholder="Ingrediente" size="md" borderLeftRadius={100} />
-          <Input placeholder="Ingrediente" size="md" borderRightRadius={100} />
+          <Input
+            placeholder="Producto"
+            size="md"
+            borderLeftRadius={100}
+            onChange={handleProduct1Change}
+          />
+          <Input
+            placeholder="Producto"
+            size="md"
+            borderRightRadius={100}
+            onChange={handleProduct2Change}
+          />
         </HStack>
         <Button
           colorScheme="blue"
@@ -97,7 +133,7 @@ export function ProductsCompatibility() {
               </HStack>
             </Box>
             <Heading color="green" marginBottom={3}>
-              Ingredientes compatibles 100%
+              Productos compatibles
             </Heading>
             <Text color="#065c06" padding={2} borderRadius={2}>
               Estos ingredientes son compatibles quimicamente. Puedes
