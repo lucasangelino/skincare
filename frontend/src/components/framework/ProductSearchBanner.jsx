@@ -7,7 +7,7 @@ export default function ProductsSearchBanner() {
     <Box bgColor={"blue.400"} height="100%" padding={5} borderRadius={10}>
       <VStack align={"left"}>
         <Heading size="lg" color="#fff" marginBottom={20}>
-          Sabías que no puedes mezclar algunos productos en tus rutinas?
+          Enterate que productos puedes combinar
         </Heading>
         <RouterLink to="/productsCompatibility">
           <Button>Revisar compatibilidad</Button>

@@ -13,7 +13,7 @@ const rutines = [
 
 export default function RutinesBanner() {
   return (
-    <Box height={"100%"} padding={10} borderRadius={10} bgColor={"#3F444E"}>
+    <Box height={"100%"} padding={10} borderRadius={10} bgColor={"#121B52"}>
       <Heading size={"md"} color="#fff">
         Mis rutinas
       </Heading>
@@ -21,7 +21,7 @@ export default function RutinesBanner() {
         Parece que no tienes rutinas creadas, ¿Quieres crear una?
       </Text>
       <Link to="/create-rutine">
-        <Button variantColor={"teal"} size={"md"}>
+        <Button variantColor={"teal"} size={"md"} marginTop={20}>
           Crear Rutina
         </Button>
       </Link>
