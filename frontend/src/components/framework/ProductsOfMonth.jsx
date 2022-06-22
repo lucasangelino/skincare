@@ -36,64 +36,69 @@ export default function ProductsOfMonth() {
           </Box>
         </GridItem>
         <GridItem colSpan={1} rowSpan={2}>
-          <Box
-            borderRadius={10}
-            bgColor={"lightgray"}
-            padding={1}
-            height={"100%"}
-          >
-            <Image src="https://via.placeholder.com/100" />
+          <Box borderRadius={10} bgColor={"lightgray"} height={"417px"}>
+            <Image
+              src="store1.png"
+              height={"100%"}
+              objectFit="cover"
+              alt="image1"
+              borderRadius={10}
             />
           </Box>
         </GridItem>
         <GridItem colSpan={1} rowSpan={2}>
-          <Box
-            borderRadius={10}
-            bgColor={"lightgray"}
-            padding={1}
-            height={"100%"}
-          >
-            <Text>producto 2</Text>
+          <Box borderRadius={10} bgColor={"lightgray"} height={"417px"}>
+            <Image
+              src="store5.png"
+              height={"100%"}
+              objectFit="cover"
+              alt="image1"
+              borderRadius={10}
+            />
           </Box>
         </GridItem>
         <GridItem gridColumnStart={5} gridColumnEnd={6} gridRowStart={1}>
-          <Box
-            borderRadius={10}
-            bgColor={"lightgray"}
-            padding={1}
-            height={"100%"}
-          >
-            <Text>producto 3</Text>
+          <Box borderRadius={10} bgColor={"lightgray"} height={"200px"}>
+            <Image
+              src="store2.jpg"
+              height={"100%"}
+              objectFit="cover"
+              alt="image1"
+              borderRadius={10}
+            />
           </Box>
         </GridItem>
         <GridItem gridColumnStart={5} gridColumnEnd={6} gridRowStart={2}>
-          <Box
-            borderRadius={10}
-            bgColor={"lightgray"}
-            padding={1}
-            height={"100%"}
-          >
-            <Text>producto 4</Text>
+          <Box borderRadius={10} bgColor={"lightgray"} height={"200px"}>
+            <Image
+              src="store3.jpg"
+              height={"100%"}
+              objectFit="cover"
+              alt="image1"
+              borderRadius={10}
+            />
           </Box>
         </GridItem>
         <GridItem gridColumnStart={6} gridColumnEnd={7} gridRowStart={1}>
-          <Box
-            borderRadius={10}
-            bgColor={"lightgray"}
-            padding={1}
-            height={"100%"}
-          >
-            <Text>producto 4</Text>
+          <Box borderRadius={10} bgColor={"lightgray"} height={"200px"}>
+            <Image
+              src="store4.jpg"
+              height={"100%"}
+              objectFit="cover"
+              alt="image1"
+              borderRadius={10}
+            />
           </Box>
         </GridItem>
         <GridItem gridColumnStart={6} gridColumnEnd={7} gridRowStart={2}>
-          <Box
-            borderRadius={10}
-            bgColor={"lightgray"}
-            padding={1}
-            height={"100%"}
-          >
-            <Text>producto 4</Text>
+          <Box borderRadius={10} bgColor={"lightgray"} height={"200px"}>
+            <Image
+              src="store6.png"
+              height={"100%"}
+              objectFit="cover"
+              alt="image1"
+              borderRadius={10}
+            />
           </Box>
         </GridItem>
       </Grid>

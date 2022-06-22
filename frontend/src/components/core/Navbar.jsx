@@ -43,7 +43,7 @@ export function Navbar() {
       <Box padding={3}>
         <Box
           px={4}
-          bg={useColorModeValue("#5357CE", "#5357CE")}
+          bg={useColorModeValue("#121B52", "#121B52")}
           px={4}
           borderRadius={10}
         >
