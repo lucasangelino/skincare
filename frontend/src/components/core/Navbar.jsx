@@ -26,7 +26,7 @@ import { AuthContext } from "../../context/auth/AuthContext";
 
 const NavLink = ({ children, to }) => (
   <RouterLink to={to}>
-    <Text fontSize="md" fontWeight="bold" color={"#fff"} paddingX={10}>
+    <Text fontSize="md" fontWeight="bold" color={"#000"} paddingX={10}>
       {children}
     </Text>
   </RouterLink>
@@ -41,12 +41,7 @@ export function Navbar() {
   return (
     <>
       <Box padding={3}>
-        <Box
-          px={4}
-          bg={useColorModeValue("#121B52", "#121B52")}
-          px={4}
-          borderRadius={10}
-        >
+        <Box px={4} bg={"#E2AFBE"} px={4} borderRadius={10}>
           <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
             <IconButton
               size={"md"}

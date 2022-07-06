@@ -11,13 +11,14 @@ import {
   Button,
   Flex,
 } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 
 import ProductOfMonth from "./ProductOfMonth";
 
 export default function ProductsOfMonth() {
   return (
     <Box
-      bgGradient="linear-gradient(180deg, #111A51 0%, #2F5270 100%)"
+      bgGradient="linear-gradient(180deg, #E2AFBE 0%, #E5637F 100%)"
       borderRadius={10}
       padding={4}
       maxW={{ base: "328px", sm: "100%" }}
@@ -32,7 +33,9 @@ export default function ProductsOfMonth() {
             <Heading size="xl" fontWeight={"light"} color="#fff">
               Descubre los mejores productos en nuestra tienda
             </Heading>
-            <Button>Tienda</Button>
+            <RouterLink to="/tienda">
+              <Button>Tienda</Button>
+            </RouterLink>
           </Box>
         </GridItem>
         <GridItem colSpan={1} rowSpan={2}>

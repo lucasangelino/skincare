@@ -4,13 +4,13 @@ import { Link as RouterLink } from "react-router-dom";
 
 export default function ProductsSearchBanner() {
   return (
-    <Box bgColor={"blue.400"} height="100%" padding={5} borderRadius={10}>
+    <Box bgColor={"#E2AFBE"} height="100%" padding={5} borderRadius={10}>
       <VStack align={"left"}>
-        <Heading size="lg" color="#fff" marginBottom={20}>
+        <Heading size="lg" color="#000" marginBottom={20}>
           Enterate que productos puedes combinar
         </Heading>
         <RouterLink to="/productsCompatibility">
-          <Button>Revisar compatibilidad</Button>
+          <Button bgColor={"#d568a7"}>Revisar compatibilidad</Button>
         </RouterLink>
       </VStack>
     </Box>

@@ -21,6 +21,7 @@ export function ProductsCompatibility() {
   const [product2, setProduct2] = React.useState("");
 
   const handleSubmit = React.useCallback(() => {
+    // compare();
     setIsLoading(true);
     const interval = setInterval(() => {
       setIsLoading(false);
@@ -52,12 +53,6 @@ export function ProductsCompatibility() {
 
   return (
     <>
-      <input
-        accept="image/*"
-        id="icon-button-file"
-        type="file"
-        capture="environment"
-      />
       <Container maxW="6xl" centerContent>
         <Heading marginBottom={10}>Compatibilidad entre Productos</Heading>
         <HStack spacing={0} width="80%" marginBottom={10}>
@@ -75,7 +70,7 @@ export function ProductsCompatibility() {
           />
         </HStack>
         <Button
-          colorScheme="blue"
+          bgColor="#E2AFBE"
           width={"60%"}
           marginBottom={10}
           onClick={handleSubmit}
