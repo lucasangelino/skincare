@@ -15,13 +15,13 @@ import {
 } from "@chakra-ui/react";
 
 export function RutineMaker() {
-  const [showExfoliante, setShowExfoliante] = React.useState(true);
+  const [showExfoliante, setShowExfoliante] = React.useState(false);
   const [showHumectante, setShowHumectante] = React.useState(true);
   const [showLimpiador, setShowLimpiador] = React.useState(true);
-  const [showProtector, setShowProtector] = React.useState(true);
+  const [showProtector, setShowProtector] = React.useState(false);
   const [showSerum, setShowSerum] = React.useState(true);
-  const [showAntiage, setShowAntiage] = React.useState(true);
-  const [showImperfecciones, setShowImperfecciones] = React.useState(true);
+  const [showAntiage, setShowAntiage] = React.useState(false);
+  const [showImperfecciones, setShowImperfecciones] = React.useState(false);
 
   React.useEffect(() => {
     getRutine();
@@ -67,7 +67,6 @@ export function RutineMaker() {
         <Stack spacing={5} direction="row" marginTop={10}>
           <Checkbox
             colorScheme="pink"
-            defaultChecked
             onChange={() => setShowExfoliante(!showExfoliante)}
           >
             Exfoliante
@@ -95,21 +94,18 @@ export function RutineMaker() {
           </Checkbox>
           <Checkbox
             colorScheme="pink"
-            defaultChecked
             onChange={() => setShowProtector(!showProtector)}
           >
             Protector Solar
           </Checkbox>
           <Checkbox
             colorScheme="pink"
-            defaultChecked
             onChange={() => setShowAntiage(!showAntiage)}
           >
             Antiage
           </Checkbox>
           <Checkbox
             colorScheme="pink"
-            defaultChecked
             onChange={() => setShowImperfecciones(!showImperfecciones)}
           >
             Anti imperfecciones

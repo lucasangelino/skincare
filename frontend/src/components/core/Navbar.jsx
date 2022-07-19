@@ -18,6 +18,7 @@ import {
   useDisclosure,
   IconButton,
   HStack,
+  Image
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Link as RouterLink } from "react-router-dom";
@@ -41,7 +42,7 @@ export function Navbar() {
   return (
     <>
       <Box padding={3}>
-        <Box px={4} bg={"#E2AFBE"} px={4} borderRadius={10}>
+        <Box px={4} bg={"#E2AFBE"} borderRadius={10}>
           <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
             <IconButton
               size={"md"}
@@ -50,7 +51,9 @@ export function Navbar() {
               display={{ md: "none" }}
               onClick={isOpen ? onClose : onOpen}
             />
-            <Box>Logo</Box>
+            <Box>
+              <Image src='../../../public/skincare-logo.png' alt='Logo' />
+            </Box>
             <HStack
               as={"nav"}
               spacing={4}
