@@ -12,10 +12,9 @@ export function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   React.useEffect(() => {
-    const timer = setTimeout(() => {
-      onOpen();
-    }, 500);
-    return () => clearTimeout(timer);
+    const isFirstOpen = !window.localStorage.getItem("hasUser");
+    if (isFirstOpen) onOpen();
+    window.localStorage.setItem("hasUser", true);
   }, []);
 
   return (

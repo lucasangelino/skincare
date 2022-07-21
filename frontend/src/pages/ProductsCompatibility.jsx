@@ -7,7 +7,9 @@ import {
   Button,
   Text,
   Heading,
+  Center,
 } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 import Form from "../components/framework/Form";
 import CompatibilityLoader from "../components/framework/ProductCompatibilityLoader";
 
@@ -79,9 +81,9 @@ export function ProductsCompatibility() {
         </Button>
 
         {isLoading && (
-          <Box width={"500px"}>
+          <Center width={"100%"} my={10}>
             <CompatibilityLoader />
-          </Box>
+          </Center>
         )}
 
         {isResult && (
@@ -100,7 +102,7 @@ export function ProductsCompatibility() {
                   alignItems="center"
                 >
                   <Heading size="lg" marginBottom={5}>
-                    Vitamina C
+                    Wayfarer
                   </Heading>
                   <Text>
                     Vitamin C is a powerful antioxidant that works to stimulate
@@ -127,13 +129,20 @@ export function ProductsCompatibility() {
                 </Box>
               </HStack>
             </Box>
+
             <Heading color="green" marginBottom={3}>
               Productos compatibles
             </Heading>
-            <Text color="#065c06" padding={2} borderRadius={2}>
+            <Text color="#065c06" padding={2} borderRadius={2} my={10}>
               Estos ingredientes son compatibles quimicamente. Puedes
               combinarlos en tus rutinas
             </Text>
+
+            <Button bgColor="#E2AFBE" width={"60%"} marginBottom={10}>
+              <RouterLink to={"/tienda"} width={"100%"}>
+                Comprar
+              </RouterLink>
+            </Button>
           </>
         )}
       </Container>

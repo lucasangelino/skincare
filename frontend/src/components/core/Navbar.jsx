@@ -18,7 +18,7 @@ import {
   useDisclosure,
   IconButton,
   HStack,
-  Image
+  Image,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Link as RouterLink } from "react-router-dom";
@@ -52,7 +52,12 @@ export function Navbar() {
               onClick={isOpen ? onClose : onOpen}
             />
             <Box>
-              <Image src='../../../public/skincare-logo.png' alt='Logo' />
+              <Image
+                src="../../../public/skincare-logo.png"
+                alt="Logo"
+                height={"50px"}
+                width={"145px"}
+              />
             </Box>
             <HStack
               as={"nav"}

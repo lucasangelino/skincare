@@ -290,7 +290,7 @@ export function RutineMaker() {
             </VStack>
           </GridItem>
         </Grid>
-        <Button marginTop={10} colorScheme={"blue"}>
+        <Button marginTop={10} bgColor={"#E2AFBE"}>
           Crear rutina
         </Button>
       </Container>
