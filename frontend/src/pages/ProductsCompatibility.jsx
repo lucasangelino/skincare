@@ -102,14 +102,12 @@ export function ProductsCompatibility() {
                   alignItems="center"
                 >
                   <Heading size="lg" marginBottom={5}>
-                    Wayfarer
+                    Vitamina C
                   </Heading>
                   <Text>
-                    Vitamin C is a powerful antioxidant that works to stimulate
-                    collagen production in your skin. It also fights fine lines,
-                    brightens your complexion, and provides a host of other
-                    benefits. Skincare experts also tout it as one of the best
-                    anti-aging ingredients you could ever use.
+                    La Vitamina C es un poderoso antioxidante que trabaja estimulando la producción de colageno en tu piel.
+                    También ayuda a lugar contra finas arrugas, le da brillo y provee muchos beneficios más. Los expertos del Skincare 
+                    también lo proclaman como uno de los mejores ingredientes antiage que podrías utilizar.
                   </Text>
                 </Box>
 
@@ -122,9 +120,8 @@ export function ProductsCompatibility() {
                     Retinol
                   </Heading>
                   <Text>
-                    Retinol, also called vitamin A1, is a fat-soluble vitamin in
-                    the vitamin A family[1] found in food and used as a dietary
-                    supplement.
+                    El Retinol, comunmente llamado Vitamina A, es una vitamina soluble en grasa, es un exfoliante remarcable
+                    ya que puede ser utilizado en pieles secas sin dañarla, siempre en cuando no se use en exceso, dejando tu piel radiante.
                   </Text>
                 </Box>
               </HStack>
